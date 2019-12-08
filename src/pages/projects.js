@@ -157,7 +157,7 @@ const ProjectTag = styled.li`
 
   a {
     transition: base;
-    color: white;
+    color: lighter;
 
     > svg {
       font-size: 18;
@@ -329,7 +329,7 @@ export default function Projects() {
       color="#FF921B"
       description="SVGR transforms SVG into React Components. You can use it with
       CLI, webpack, rollup, Node.js or even online. It is included
-      in create-react-app and has 2M+ downloads by week."
+      in create-react-app and has 2M downloads by week."
       tags={['React', 'AST', 'Babel', 'create-react-app']}
     />,
 
@@ -341,7 +341,7 @@ export default function Projects() {
       github="https://github.com/smooth-code/loadable-components"
       url="https://www.smooth-code.com/open-source/loadable-components/"
       color="#E7E7E7"
-      description="Loadable Components is the Code Splitting solution for React compatible with Server Side Rendering. It is the official solution if you don't use a framework like Next.js or Gatsby."
+      description="Loadable Components is the Code Splitting solution for React compatible with Server Side Rendering. It is the official library if you don't use a framework like Next.js or Gatsby."
       tags={['React', 'Code Splitting', 'webpack', 'rollup']}
     />,
     <ProjectTemplate
@@ -366,7 +366,7 @@ export default function Projects() {
       url="https://www.smooth-code.com/open-source/smooth-ui/"
       color="#E00348"
       description="Smooth UI is a simple and powerful UI library for React. It
-      provides accessible and ready to use components. xstyled and
+      provides accessible and ready-to-use components. xstyled and
       Reakit are the foundations of Smooth UI."
       tags={['React', 'UI Library']}
     />,
@@ -377,7 +377,7 @@ export default function Projects() {
       github="https://github.com/smooth-code/bundle-analyzer"
       url="https://www.bundle-analyzer.com"
       color="#097dea"
-      description="Bundle Analyzer is a service that helps you monitor and keep your webpack bundle optimized over time. It is a public and free GitHub App."
+      description="Bundle Analyzer is a service that helps you monitor and keep your webpack bundle optimized over time. It is available as a public and free GitHub App."
       tags={['Node.js', 'automation', 'devops']}
       stats={false}
     />,
@@ -389,8 +389,8 @@ export default function Projects() {
       github="https://github.com/smooth-code/jest-puppeteer"
       url="https://github.com/smooth-code/jest-puppeteer"
       color="#FF5600"
-      description="Jest Puppeteer units Jest and Puppeteer to provide a ready-to-use solution for end-to-end testing. It also exposes lots of utilities to encourage good testing practices."
-      tags={['Node.js', 'Jest', 'Puppeteer', 'end-to-end testing']}
+      description="Jest Puppeteer unifies Jest and Puppeteer to provide a ready-to-use solution for end-to-end testing. It also exposes lots of utilities to encourage good testing practices."
+      tags={['Node.js', 'Jest', 'Puppeteer', 'E2E Testing']}
     />,
     <ProjectTemplate
       logo={logos.shipit}

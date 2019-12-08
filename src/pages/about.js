@@ -95,11 +95,11 @@ export default function AboutPage() {
         <Container mt={5}>
           <Text>
             <p>
-              When I was 12 years old, I created a gaming websites, after a few
-              months it was big enough to be sold to a company. At 19 years, I
-              become <strong>R&D engineer</strong> at{' '}
-              <a href="https://www.lemonde.fr">Le Monde</a> and lead the led the
-              CMS project of the newspaper group.
+              When I was 12 years old, I created a gaming website which after a
+              few months grew big enough to be sold to a company. At 19, I
+              became <strong>R&D engineer</strong> at{' '}
+              <a href="https://www.lemonde.fr">Le Monde</a> and lead the CMS
+              project of the newspaper group.
             </p>
 
             <p>
@@ -109,30 +109,36 @@ export default function AboutPage() {
             </p>
 
             <p>
-              In 2017, I started <strong>Smooth Code</strong>, a software
+              In 2017, I founded <strong>Smooth Code</strong>, a software
               development studio to help startups like{' '}
               <a href="http://www.payfit.com">Payfit</a>,{' '}
               <a href="https://www.scaleway.com">Scaleway</a> or{' '}
               <a href="https://www.welcometothejungle.com">
                 Welcome to the Jungle
               </a>{' '}
-              to growth.
+              grow.
             </p>
 
             <p>
               Over the years, I’ve become passionate about open source software
-              and giving back to others. <Link to="/projects">My projects</Link>{' '}
-              are trusted by thousands of developers.
+              and sharing with others behind my computer or as a speaker at
+              conferences. <Link to="/projects">My projects</Link> are trusted
+              by thousands of developers.
             </p>
 
             <p>
-              Aside from talking about Web Development on{' '}
-              <a href="https://twitter.com/neoziro">Twitter</a>, I am{' '}
-              <strong>speaker</strong> and <strong>trainer</strong>. Over the
-              years, I trained more than 400 developers in big french companies
-              like <a href="https://www.sncf.com">SNCF</a>,{' '}
+              I am also very active in the training field as I have given
+              workshops to more than 400 developers in companies such as{' '}
+              <a href="https://www.sncf.com">SNCF</a>,{' '}
               <a href="https://www.alan.com">Alan</a> or{' '}
               <a href="https://www.mappy.com">Mappy</a>.
+            </p>
+
+            <p>
+              Don&apos;t hesitate to reach out by{' '}
+              <a href="mailto:hey@gregberge.com">email</a> or on{' '}
+              <a href="https://twitter.com/neoziro">Twitter</a>. I&apos;ll be
+              happy to talk!
             </p>
           </Text>
         </Container>

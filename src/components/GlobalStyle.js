@@ -19,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
 
   ::selection {
     background-color: light800; 
+    color: lighter;
   }
 
   * {

@@ -77,8 +77,9 @@ export function Hero() {
           <br />I help people make the web great.
         </Title>
         <TeaserText>
-          I am a software engineer based in Paris, I help companies to build
-          high quality websites and applications using JavaScript and React.
+          I am a software engineer based in Paris. I create tools and teach how
+          to build high quality websites and applications using JavaScript and
+          React.
         </TeaserText>
       </Container>
     </PageContainer>
