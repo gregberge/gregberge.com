@@ -12,21 +12,22 @@ const Success = styled.div`
 `
 
 export function WorkshopForm() {
-  const formRef = React.useRef()
   return (
     <Form
       defaultError="An error happen, please retry"
       onSubmit={values => {
-        const action = formRef.current.getAttribute('action')
         const body = new URLSearchParams()
+        body.append('form-name', 'workshop')
         Object.entries(values).forEach(([name, value]) => {
           body.append(name, value)
         })
-        return fetch(action, {
-          method: 'post',
+        return fetch('/', {
+          method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body,
-        }).catch(error => ({ [FORM_ERROR]: error.message }))
+        })
+          .catch(error => ({ [FORM_ERROR]: error.message }))
+          .then(() => {})
       }}
     >
       {({ handleSubmit, submitSucceeded, submitting }) => (
@@ -38,7 +39,6 @@ export function WorkshopForm() {
           )}
           {!submitSucceeded && (
             <form
-              ref={formRef}
               name="workshop"
               data-netlify="true"
               noValidate
