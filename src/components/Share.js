@@ -19,6 +19,7 @@ const InnerShare = styled.div`
     line-height: 0;
     cursor: pointer;
     transition: base;
+    color: lighter;
 
     &:hover {
       color: accent;

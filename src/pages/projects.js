@@ -1,5 +1,11 @@
 import React from 'react'
-import styled, { keyframes, th, css, Box } from '@xstyled/styled-components'
+import styled, {
+  keyframes,
+  th,
+  css,
+  Box,
+  useColorMode,
+} from '@xstyled/styled-components'
 import Img from 'gatsby-image'
 import { useStaticQuery, graphql } from 'gatsby'
 import humanNumber from 'human-number'
@@ -296,26 +302,13 @@ function ProjectTemplate({
   )
 }
 
-export default function Projects() {
-  const data = useStaticQuery(graphql`
-    query {
-      allFile(filter: { relativePath: { glob: "projects/logo-*" } }) {
-        edges {
-          node {
-            relativePath
-            childImageSharp {
-              fluid(maxWidth: 180) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+function Projects({ data }) {
+  const [colorMode] = useColorMode()
+  const regexp = new RegExp(`^projects/logo-(.*)-${colorMode}.png$`)
   const logos = data.allFile.edges.reduce((obj, edge) => {
-    const [, name] = edge.node.relativePath.match(/^projects\/logo-(.*)\.png$/)
-    obj[name] = edge.node.childImageSharp.fluid
+    const matches = edge.node.relativePath.match(regexp)
+    if (!matches) return obj
+    obj[matches[1]] = edge.node.childImageSharp.fluid
     return obj
   }, {})
   const projects = [
@@ -405,6 +398,36 @@ export default function Projects() {
     />,
   ]
   return (
+    <Box mt={5} row mb={{ xs: -4, md: -5 }}>
+      {projects.map((project, index) => (
+        <Box col={1} py={{ xs: 4, md: 5 }} key={index}>
+          {React.cloneElement(project, {
+            position: index % 2 === 0 ? 'left' : 'right',
+          })}
+        </Box>
+      ))}
+    </Box>
+  )
+}
+
+export default function ProjectsPage() {
+  const data = useStaticQuery(graphql`
+    query {
+      allFile(filter: { relativePath: { glob: "projects/logo-*" } }) {
+        edges {
+          node {
+            relativePath
+            childImageSharp {
+              fluid(maxWidth: 180) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+  return (
     <AppLayout>
       <PageContainer>
         <SectionTitle>Projects</SectionTitle>
@@ -413,15 +436,7 @@ export default function Projects() {
           and trusted by <strong>thousands of developers</strong> all over the
           world.
         </SectionDescription>
-        <Box mt={5} row mb={{ xs: -4, md: -5 }}>
-          {projects.map((project, index) => (
-            <Box col={1} py={{ xs: 4, md: 5 }} key={index}>
-              {React.cloneElement(project, {
-                position: index % 2 === 0 ? 'left' : 'right',
-              })}
-            </Box>
-          ))}
-        </Box>
+        <Projects data={data} />
       </PageContainer>
     </AppLayout>
   )

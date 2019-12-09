@@ -53,18 +53,18 @@ const theme = {
 
     modes: {
       light: {
-        lighter: '#000531',
+        lighter: '#000C39',
         light950: '#F6F6F6',
         light900: '#EEEEEE',
         light800: '#F5F5F5',
-        light700: '#E7E7F1',
-        light500: '#B3B7D3',
-        light400: '#696DC9',
-        light300: '#474A83',
-        light200: '#2C3099',
-        light100: '#1f2347',
+        light700: '#E7EBF1',
+        light500: '#D2D5DA',
+        light400: '#767EA3',
+        light300: '#535988',
+        light200: '#445B8D',
+        light100: '#363B65',
         darker: th.color('white'),
-        accent: '#A84700',
+        accent: '#C96F00',
       },
       'monochrome-light': {
         lighter: th.color('black'),
