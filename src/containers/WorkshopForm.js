@@ -39,6 +39,7 @@ export function WorkshopForm() {
           {!submitSucceeded && (
             <form
               ref={formRef}
+              name="workshop"
               data-netlify="true"
               noValidate
               onSubmit={handleSubmit}
