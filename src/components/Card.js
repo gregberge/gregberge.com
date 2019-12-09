@@ -1,4 +1,10 @@
-import styled, { th } from '@xstyled/styled-components'
+import styled, { th, keyframes } from '@xstyled/styled-components'
+
+const move = keyframes`
+  to {
+    transform: scale(1.2);
+  }
+`
 
 export const Card = styled.box`
   background: linear-gradient(
@@ -11,6 +17,39 @@ export const Card = styled.box`
   box-sizing: border-box;
   box-shadow: ${th.px(5)} ${th.px(5)} ${th.px(15)} rgba(0, 0, 0, 0.12);
   border-radius: 8;
+
+  h4 {
+    margin: 2 0;
+    color: light100;
+    font-weight: 700;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    margin: 4 0;
+    background-color: light500;
+  }
+
+  ul {
+    padding: 0 0 0 2;
+  }
+
+  li {
+    list-style-type: none;
+    padding: 0;
+
+    &::before {
+      display: inline-block;
+      content: '★';
+      font-size: 0.6em;
+      margin-right: 2;
+      vertical-align: 15%;
+      color: accent;
+      animation: ${move} 500ms infinite;
+      animation-direction: alternate-reverse;
+    }
+  }
 `
 
 export const CardLink = styled.a`
@@ -30,7 +69,14 @@ export const CardLink = styled.a`
   }
 `
 
-export const CardBody = styled.div`
+export const CardHeader = styled.box`
+  padding: 3;
+  background-color: light700;
+`
+
+export const CardFooter = CardHeader
+
+export const CardBody = styled.box`
   padding: 3;
 `
 

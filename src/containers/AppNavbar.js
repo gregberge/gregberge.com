@@ -21,6 +21,9 @@ export function AppNavbar() {
         <NavbarLink as={Link} to="/blog">
           Blog
         </NavbarLink>
+        <NavbarLink as={Link} to="/workshops">
+          Workshops
+        </NavbarLink>
         <NavbarLink as={Link} to="/projects">
           Projects
         </NavbarLink>
