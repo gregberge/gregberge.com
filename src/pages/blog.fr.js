@@ -14,7 +14,7 @@ export default function IndexPage({ data }) {
     return frEdge || enEdge
   })
   return (
-    <AppLayout>
+    <AppLayout langKey="fr">
       <Seo title="Greg Bergé — Blog" />
       <PageContainer>
         <SectionTitle>Blog</SectionTitle>

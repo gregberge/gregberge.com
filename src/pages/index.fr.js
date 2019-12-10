@@ -15,7 +15,7 @@ export default function IndexPage({ data }) {
     return frEdge || enEdge
   })
   return (
-    <AppLayout>
+    <AppLayout langKey="fr">
       <Seo />
       <Hero>
         <HeroIntro>Bonjour, je m’appelle</HeroIntro>

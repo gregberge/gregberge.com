@@ -1,18 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Helmet } from 'react-helmet'
 
 const I18nContext = React.createContext('en')
 
 export function I18nProvider({ langKey, children }) {
-  return (
-    <I18nContext.Provider value={langKey}>
-      <Helmet>
-        <html lang={langKey} />
-      </Helmet>
-      {children}
-    </I18nContext.Provider>
-  )
+  return <I18nContext.Provider value={langKey}>{children}</I18nContext.Provider>
 }
 
 export function useLangKey() {

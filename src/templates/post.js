@@ -7,7 +7,6 @@ import { MDXProvider } from '@mdx-js/react'
 import Markdown from 'react-markdown'
 import { Location } from '@reach/router'
 import { PageContainer } from '../components/Container'
-import { I18nProvider } from '../components/I18nContext'
 import { Code } from '../components/Code'
 import { Share } from '../components/Share'
 import { AppLayout } from '../containers/AppLayout'
@@ -217,46 +216,44 @@ export default function Post({ data, pageContext: { langKey } }) {
   const { frontmatter, body } = data.mdx
 
   return (
-    <I18nProvider langKey={langKey}>
-      <AppLayout>
-        <Seo
-          title={frontmatter.title}
-          description={frontmatter.description}
-          image={frontmatter.banner.childImageSharp.social.src}
-          datePublished={frontmatter.date}
-          isBlogPost
-        />
-        <MDXProvider components={components}>
-          <PageContainer>
-            <Article>
-              <h1>{frontmatter.title}</h1>
-              <section className="metadata">
-                <time dateTime={frontmatter.date}>
-                  {formatPostDate(frontmatter.date, 'en')}
-                </time>
-                <span>{formatReadingTime(data.mdx.timeToRead)}</span>
-              </section>
-              <figure className="top-img">
-                <Img fluid={frontmatter.banner.childImageSharp.fluid} />
-                <Markdown renderers={{ paragraph: 'figcaption' }}>
-                  {frontmatter.bannerCredit}
-                </Markdown>
-              </figure>
-              <Markdown>{frontmatter.description}</Markdown>
-              <MDXRenderer>{body}</MDXRenderer>
-            </Article>
-            <Location>
-              {({ location }) => (
-                <Share
-                  url={`${data.site.siteMetadata.canonicalUrl}${location.pathname}`}
-                  title={frontmatter.title}
-                />
-              )}
-            </Location>
-          </PageContainer>
-        </MDXProvider>
-      </AppLayout>
-    </I18nProvider>
+    <AppLayout langKey={langKey}>
+      <Seo
+        title={frontmatter.title}
+        description={frontmatter.description}
+        image={frontmatter.banner.childImageSharp.social.src}
+        datePublished={frontmatter.date}
+        isBlogPost
+      />
+      <MDXProvider components={components}>
+        <PageContainer>
+          <Article>
+            <h1>{frontmatter.title}</h1>
+            <section className="metadata">
+              <time dateTime={frontmatter.date}>
+                {formatPostDate(frontmatter.date, 'en')}
+              </time>
+              <span>{formatReadingTime(data.mdx.timeToRead)}</span>
+            </section>
+            <figure className="top-img">
+              <Img fluid={frontmatter.banner.childImageSharp.fluid} />
+              <Markdown renderers={{ paragraph: 'figcaption' }}>
+                {frontmatter.bannerCredit}
+              </Markdown>
+            </figure>
+            <Markdown>{frontmatter.description}</Markdown>
+            <MDXRenderer>{body}</MDXRenderer>
+          </Article>
+          <Location>
+            {({ location }) => (
+              <Share
+                url={`${data.site.siteMetadata.canonicalUrl}${location.pathname}`}
+                title={frontmatter.title}
+              />
+            )}
+          </Location>
+        </PageContainer>
+      </MDXProvider>
+    </AppLayout>
   )
 }
 

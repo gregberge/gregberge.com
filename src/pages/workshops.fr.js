@@ -184,7 +184,7 @@ export default function Workshops() {
   `)
 
   return (
-    <AppLayout>
+    <AppLayout langKey="fr">
       <Seo title="Formation React Hooks par Greg Bergé" />
       <PageContainer>
         <SectionTitle>Formations</SectionTitle>

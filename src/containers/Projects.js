@@ -405,7 +405,7 @@ function Projects({ data, projects }) {
   )
 }
 
-export function ProjectsPageTemplate({ title, intro, projects }) {
+export function ProjectsPageTemplate({ title, intro, projects, langKey }) {
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { relativePath: { glob: "projects/logo-*" } }) {
@@ -423,7 +423,7 @@ export function ProjectsPageTemplate({ title, intro, projects }) {
     }
   `)
   return (
-    <AppLayout>
+    <AppLayout langKey={langKey}>
       <Seo title={`Greg Bergé — ${title}`} />
       <PageContainer>
         <SectionTitle>{title}</SectionTitle>

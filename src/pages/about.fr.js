@@ -20,7 +20,7 @@ export default function AboutPage() {
     }
   `)
   return (
-    <AppLayout>
+    <AppLayout langKey="fr">
       <Seo title="A propos de Greg Bergé" />
       <AboutContainer>
         <Container>
