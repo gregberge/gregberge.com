@@ -13,7 +13,7 @@ const locales = {
   },
   fr: {
     description:
-      'Le site personnel de Greg Bergé. Apprenez et devenez meilleur en React et JavaScript',
+      'Le site personnel de Greg Bergé. Apprenez et devenez meilleur en React et JavaScript.',
   },
 }
 
