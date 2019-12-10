@@ -2,6 +2,7 @@ import React from 'react'
 import styled from '@xstyled/styled-components'
 import { FaTwitter, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { Container } from '../components/Container'
+import { useLangKey } from '../components/I18nContext'
 
 const Copyright = styled.div`
   color: light400;
@@ -26,30 +27,41 @@ const SocialLink = styled.a`
 
 const currentYear = new Date().getFullYear()
 
+const locales = {
+  en: {
+    twitter: 'My Twitter profile',
+    github: 'My GitHub profile',
+    linkedin: 'My LinkedIn profile',
+    email: 'Send me an email',
+  },
+  fr: {
+    twitter: 'Mon profil Twitter',
+    github: 'Mon profil GitHub',
+    linkedin: 'Mon profil LinkedIn',
+    email: 'Écrivez-moi',
+  },
+}
+
 export function AppFooter() {
+  const langKey = useLangKey()
+  const t = locales[langKey]
   return (
     <Container display="flex" mt={4} pb={4}>
       <Copyright>Greg Bergé © {currentYear}</Copyright>
       <Socials>
-        <SocialLink
-          title="My Twitter profile"
-          href="https://twitter.com/neoziro"
-        >
+        <SocialLink title={t.twitter} href="https://twitter.com/neoziro">
           <FaTwitter />
         </SocialLink>
-        <SocialLink
-          title="My GitHub profile"
-          href="https://github.com/gregberge"
-        >
+        <SocialLink title={t.github} href="https://github.com/gregberge">
           <FaGithub />
         </SocialLink>
         <SocialLink
-          title="My LinkedIn profile"
+          title={t.linkedin}
           href="https://www.linkedin.com/in/gregberge"
         >
           <FaLinkedin />
         </SocialLink>
-        <SocialLink title="Send me a mail" href="mailto:hey@gregberge.com">
+        <SocialLink title={t.email} href="mailto:hey@gregberge.com">
           <FaEnvelope />
         </SocialLink>
       </Socials>

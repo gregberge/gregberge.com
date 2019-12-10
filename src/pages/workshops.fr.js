@@ -185,10 +185,11 @@ export default function Workshops() {
   return (
     <AppLayout>
       <PageContainer>
-        <SectionTitle>Workshops</SectionTitle>
+        <SectionTitle>Formations</SectionTitle>
         <SectionDescription>
-          A workshop for everyone to learn how to build and scale a{' '}
-          <strong>React</strong> application using <strong>Hooks</strong>.
+          Une formation accessible à tous pour apprendre à créer et scaler une
+          application web <strong>React</strong> en utilisant les{' '}
+          <strong>Hooks</strong>.
         </SectionDescription>
         <Card
           forwardedAs="section"
@@ -198,95 +199,100 @@ export default function Workshops() {
         >
           <Logo />
           <CardHeader pr="40%">
-            <WorkshopTitle>Advanced React</WorkshopTitle>
-            <p>From the creator of Loadable Components, SVGR & Smooth UI.</p>
+            <WorkshopTitle>React Avancé</WorkshopTitle>
+            <p>Par le créateur de Loadable Components, SVGR & Smooth UI.</p>
           </CardHeader>
           <CardBody>
             <div>
-              <CardTitle>Discover the power of React Hooks</CardTitle>
+              <CardTitle>Découvrez la puissance des Hooks</CardTitle>
               <p>
-                React Hooks makes your code simpler and improves the sharing
-                logic between your components. It is{' '}
-                <strong>the new recommended way</strong> of coding React
-                applications.
+                Les Hooks React vous permettent de simplifier votre code et de
+                partager de la logique plus simplement que jamais. C’est
+                aujourd’hui
+                <strong>la méthode recommandée</strong> pour coder vos
+                applications React.
               </p>
               <p>
-                I will share with you my experience on a dozen of projects and
-                complex problematics like data-fetching with{' '}
-                <strong>Suspense</strong> and <strong>Code Splitting</strong>.
-                This two-day workshop will give you keys to start and to be
-                powerful.
+                Je partagerai avec vous mon expériences sur des dizaines de
+                projets. Sur des problématiques complexes telles que le
+                data-fetching avec <strong>Suspense</strong> et le
+                <strong>Code Splitting</strong>. Ce workshop intense de deux
+                jours vous permettra d’y voir clair et d’être plus efficace.
               </p>
               <ul>
-                <li>Two days of intense workshop</li>
-                <li>Fundamental & Advanced React concepts</li>
-                <li>Adapted for everyone</li>
-                <li>Courses & exercises included</li>
-                <li>Some code, lots of code!</li>
-                <li>Q/A session with me</li>
+                <li>Deux journées de workshops intense</li>
+                <li>Concepts fondamentaux et avancés de React</li>
+                <li>Adapté à tous les niveaux de connaissance</li>
+                <li>Supports et exercices inclus</li>
+                <li>Du code, beaucoup de code</li>
+                <li>Questions / réponses avec moi</li>
               </ul>
             </div>
           </CardBody>
         </Card>
         <Card forwardedAs="section" my={5}>
           <CardBody>
-            <CardTitle>What will you learn?</CardTitle>
+            <CardTitle>Qu’allez-vous apprendre ?</CardTitle>
             <Box row justifyContent="space-around">
               <Box col={{ xs: 1, md: 'auto' }} as="ul">
-                <li>Fundamentals of React with Hooks</li>
-                <li>Story of Hooks: motivation, patterns</li>
-                <li>State management (avoid redux)</li>
-                <li>Limits of Hooks</li>
-                <li>Think &quot;effect&quot;, not &quot;lifecycle&quot;</li>
-                <li>Compose and share logic</li>
+                <li>Les bases de React avec les Hooks</li>
+                <li>L’histoire des Hooks : motivation, patterns</li>
+                <li>Gestion du state partagé (no redux)</li>
+                <li>Les limites des Hooks</li>
+                <li>Penser “effect” et non “lifecycle”</li>
+                <li>Composer et partager la logique</li>
               </Box>
               <Box col={{ xs: 1, md: 'auto' }} as="ul">
-                <li>Render-as-You-Fetch with Suspense</li>
-                <li>Performances optimization</li>
-                <li>Animate your UI with Hooks</li>
-                <li>Accessibility and keyboard handling</li>
-                <li>Use-case and usage of Refs</li>
-                <li>Create composable and reusable Hooks</li>
+                <li>Render-as-You-Fetch avec Suspense</li>
+                <li>Optimisation des performances</li>
+                <li>Animer son UI à l’aide des Hooks</li>
+                <li>Accessibilité et gestion du clavier</li>
+                <li>Cas d’usage et utilisation des Refs</li>
+                <li>Créer des Hooks réutilisables</li>
               </Box>
             </Box>
           </CardBody>
         </Card>
         <Card forwardedAs="section" my={5}>
           <CardBody>
-            <CardTitle>Who should attend?</CardTitle>
+            <CardTitle>À qui s’adresse cette formation ?</CardTitle>
             <Box row mx={-3} textAlign="justify" fontSize={15}>
               <Box px={3} col={{ xs: 1, md: 1 / 3 }}>
-                <h4>Beginners</h4>
+                <h4>Débutant</h4>
                 <p>
-                  If you have finished the React tutorial, then you are ready
-                  for this workshop. We will start with React fundamentals using
-                  Hooks. Hooks simplifies things and makes React more accessible
-                  to beginners. The most important is to be comfortable with
-                  JavaScript and web-development itself.
+                  Si vous avez terminé le tutoriel React, alors vous êtes prêt
+                  pour ce workshop. Nous démarrerons avec les fondamentaux de
+                  React en y intégrant les Hooks. Les Hooks simplifient beaucoup
+                  de choses et rendent React plus accessible aux débutants. Le
+                  plus important est d’être confortable avec JavaScript et le
+                  développement web plus qu’avec React lui-même.
                 </p>
               </Box>
               <Box px={3} col={{ xs: 1, md: 1 / 3 }}>
-                <h4>Intermediate</h4>
+                <h4>Intermédiaire</h4>
                 <p>
-                  If you have been working with React in production for a while
-                  and want to level-up, this workshop is perfect. We will start
-                  from basics and explore new things that will make your
-                  developer life simpler. Aside from basics, you will learn how
-                  to organize your code, scale your application and be more
-                  efficient than ever. After these two days, you will have a
-                  clear view on how to compose UI and reuse your code.
+                  Si vous avez travaillé avec React en production depuis un
+                  moment et que vous souhaitez passer à la vitesse supérieure,
+                  c’est l’occasion. Nous allons revoir les bases et explorer des
+                  choses que vous ne savez peut-être pas et qui vous
+                  simplifieront la vie. Outre les bases, vous apprendrez comment
+                  tirer partie des Hooks et organiser votre code pour être plus
+                  efficace que jamais. Après ces deux jours, vous aurez une
+                  vision claire de la manière d’organiser votre code afin de
+                  composer à la fois l’UI et la logique.
                 </p>
               </Box>
               <Box px={3} col={{ xs: 1, md: 1 / 3 }}>
-                <h4>Experienced</h4>
+                <h4>Expérimenté</h4>
                 <p>
-                  If you are already good with React, this workshop will make
-                  you discover Hooks and how to move forward your codebase. You
-                  will be able to exchange on complex problematics and I will
-                  give you the keys to solve them the best way you can. You will
-                  also learn how React is moving, the new features and the
-                  philosophy behind them. You will be able to teach your team at
-                  the end of the workshop.
+                  Si vous êtes déjà très à l’aise avec React, ce workshop vous
+                  permettra de découvrir les Hooks et de voir clairement comment
+                  faire avancer votre code base. Vous aurez l’occasion
+                  d’échanger sur des problématiques et sur les manières de les
+                  résoudre de manière élégante. Vous comprendrez quel impact les
+                  nouveautés ont sur votre manière de coder au jour le jour et
+                  comment vous pourrez en tirer parti pour être plus rapide et
+                  plus efficace.
                 </p>
               </Box>
             </Box>
@@ -299,7 +305,7 @@ export default function Workshops() {
         </Card>
         <Card forwardedAs="section" my={5}>
           <CardBody>
-            <CardTitle>Book a training for your company</CardTitle>
+            <CardTitle>Réservez une formation pour votre société</CardTitle>
             <WorkshopForm />
           </CardBody>
         </Card>

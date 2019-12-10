@@ -19,6 +19,7 @@ const FormFieldLabel = styled.label`
 `
 
 export const Input = styled.input`
+  line-height: 1.2;
   appearance: none;
   background-color: light800;
   border: 1px solid;

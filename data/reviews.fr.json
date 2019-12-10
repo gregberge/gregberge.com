@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Sonia Baibou",
+    "jobTitle": "Développeuse, fondatrice de Ellecode",
+    "slug": "sonia-baibou",
+    "linkType": "twitter",
+    "url": "https://twitter.com/ellecode_/status/976552344279244800",
+    "text": "3 jours de formation #reactjs avec @smooth_code et THE expert @gregberge. Très intense, plein de bons conseils pour démarrer, les bonnes pratiques et y voir plus clair parmi la multitude de libs disponibles, je recommande à 100% pour tous ceux qui veulent démarrer #reactjs #React👏"
+  },
+  {
+    "name": "Emmanuel Barachan",
+    "jobTitle": "Développeur chez Scaleway",
+    "slug": "emmanuel-barachan",
+    "linkType": null,
+    "url": null,
+    "text": "Équipe chaleureuse, ils savent de quoi ils parlent ! La formation React avancé m’a ouvert les yeux sur mes lacunes, je recommande vivement."
+  },
+  {
+    "name": "Ludovic Zamord",
+    "jobTitle": "Développeur chez Fullsix Group",
+    "slug": "ludovic-zamord",
+    "linkType": "linkedin",
+    "url": "https://www.linkedin.com/in/lzamord",
+    "text": "Très bonne formation React Avancé fournie par Greg, je la recommande vivement, lorsque l’on souhaite aborder des sujets un peu plus poussés et les bonnes pratiques a mettre en place en React."
+  },
+  {
+    "name": "Vianney Stroebel",
+    "jobTitle": "Développeur chez Scaleway",
+    "slug": "vianney-strobel",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/vianneystroebel",
+    "text": "Une formation \"React niveau avancé\" très complète prodiguée par un expert qui a répondu à toutes nos questions avec nuance."
+  },
+  {
+    "name": "Jeremy Robert",
+    "jobTitle": "Développeur chez Veolia",
+    "slug": "jeremy-robert",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/j%C3%A9r%C3%A9my-robert-9987b8a8",
+    "text": "Formation au top, Greg est très pédagogue et possède un excellent niveau technique. Il prend le temps de nous expliquer si on se sent perdu à un moment donné. Je recommande chaudement."
+  },
+  {
+    "name": "David Poulin",
+    "jobTitle": "Architecte Indépendant DevOps, Cloud & Mobilité",
+    "slug": "david-poulin",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/dapoulin",
+    "text": "J'ai passé 3 jours avec eux dans des locaux vraiment sympas, et j'ai vraiment trop apprécié ! Greg est génial, prend le temps d'écouter, d'expliquer, de comprendre, je ne peux que les recommander si vous souhaitez vous mettre à jour sur React, GraphQL & compagnie !"
+  }
+]

@@ -4,6 +4,7 @@ import jsonp from 'jsonp'
 import { Form } from 'react-final-form'
 import { FORM_ERROR } from 'final-form'
 import { Container } from '../components/Container'
+import { useLangKey } from '../components/I18nContext'
 import { mustBeEmail, InputField, Button } from '../components/Form'
 
 export const FormLayout = styled.div`
@@ -40,7 +41,44 @@ const Success = styled.div`
   }
 `
 
+const locales = {
+  en: {
+    success: (
+      <>
+        <p>Thanks, one last thing...</p>
+        <p>
+          Please <strong>check your inbox</strong> to confirm your subscription!
+        </p>
+      </>
+    ),
+    firstName: 'First Name',
+    teaser:
+      'Get emails from me about open source, business, learning and teaching.',
+    submit: 'Submit',
+    submitting: 'Submitting',
+  },
+  fr: {
+    success: (
+      <>
+        <p>Merci, une dernière chose...</p>
+        <p>
+          Pouvez-vous <strong>regarder votre boîte mail</strong> pour confirmer
+          votre inscription.
+        </p>
+      </>
+    ),
+    firstName: 'Prénom',
+    teaser:
+      'Recevez des emails sur l’open source, le business, comprendre et apprendre.',
+    submit: 'Envoyer',
+    submitting: 'Envoie en cours...',
+  },
+}
+
 export function Newsletter() {
+  const langKey = useLangKey()
+  const t = locales[langKey]
+
   function handleSubmit({ FNAME, EMAIL }) {
     const params = new URLSearchParams(
       'u=52fd0cbf3e5a6413c71ca38a5&id=25b7eb1ae7',
@@ -65,24 +103,15 @@ export function Newsletter() {
         {({ handleSubmit, submitting, submitSucceeded }) => (
           <form noValidate onSubmit={handleSubmit}>
             {submitSucceeded ? (
-              <Success>
-                <p>Thanks, one last thing...</p>
-                <p>
-                  Please <strong>check your inbox</strong> to confirm your
-                  subscription!
-                </p>
-              </Success>
+              <Success>{t.success}</Success>
             ) : (
               <>
-                <Teaser>
-                  Get emails from me about open source, business, learning and
-                  teaching.
-                </Teaser>
+                <Teaser>{t.teaser}</Teaser>
                 <FormLayout>
                   <Box py={2} px={3}>
                     <InputField
                       name="FNAME"
-                      label="First Name"
+                      label={t.firstName}
                       placeholder="Hubert"
                     />
                   </Box>
@@ -105,7 +134,7 @@ export function Newsletter() {
                     px={3}
                   >
                     <Button type="submit" disabled={submitting}>
-                      {submitting ? 'Submitting...' : 'Submit'}
+                      {submitting ? t.submitting : t.submit}
                     </Button>
                   </Box>
                 </FormLayout>

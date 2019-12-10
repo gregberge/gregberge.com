@@ -3,13 +3,24 @@ import { graphql } from 'gatsby'
 import { AppLayout } from '../containers/AppLayout'
 import { SectionTitle } from '../components/Section'
 import { Container } from '../components/Container'
-import { Hero } from '../containers/Hero'
+import { Hero, HeroIntro, HeroTitle, HeroTeaser } from '../containers/Hero'
 import { LatestArticles } from '../containers/LatestArticles'
 
 export default function IndexPage({ data }) {
   return (
     <AppLayout>
-      <Hero />
+      <Hero>
+        <HeroIntro>Hi, my name is</HeroIntro>
+        <HeroTitle>
+          <strong>Greg Bergé.</strong>
+          <br />I help people make the web great.
+        </HeroTitle>
+        <HeroTeaser>
+          I am a software engineer based in Paris. I create tools and teach how
+          to build high quality websites and applications using JavaScript and
+          React.
+        </HeroTeaser>
+      </Hero>
       <Container forwardedAs="section" pb={5}>
         <SectionTitle forwardedAs="h2">Blog</SectionTitle>
         <LatestArticles edges={data.allMdx.edges} />
@@ -19,11 +30,14 @@ export default function IndexPage({ data }) {
 }
 
 export const pageQuery = graphql`
-  query {
+  query($langKey: String!) {
     allMdx(
       limit: 5
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { ne: false } } }
+      filter: {
+        frontmatter: { published: { ne: false } }
+        fields: { langKey: { eq: $langKey } }
+      }
     ) {
       edges {
         node {

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Sonia Baibou",
+    "jobTitle": "Developer, founder of Ellecode",
+    "slug": "sonia-baibou",
+    "linkType": "twitter",
+    "url": "https://twitter.com/ellecode_/status/976552344279244800",
+    "text": "3 days of #reactjs training with @smooth_code and THE expert @gregberge. Very intense, lots of tips to start, the good practices and choose the right lib, I 100% recommend for everyone who whan to start with #reactjs #React👏"
+  },
+  {
+    "name": "Emmanuel Barachan",
+    "jobTitle": "Developer at Scaleway",
+    "slug": "emmanuel-barachan",
+    "linkType": null,
+    "url": null,
+    "text": "Great team, they know their subject! The React Advanced workshop opens my eyes on my gaps, I recommend!"
+  },
+  {
+    "name": "Ludovic Zamord",
+    "jobTitle": "Developer at Fullsix Group",
+    "slug": "ludovic-zamord",
+    "linkType": "linkedin",
+    "url": "https://www.linkedin.com/in/lzamord",
+    "text": "Very good Advanced React workshop taught by Greg, I recommend it! When we need start advanced subject and good practices to scale a React app."
+  },
+  {
+    "name": "Vianney Stroebel",
+    "jobTitle": "Developer at Scaleway",
+    "slug": "vianney-strobel",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/vianneystroebel",
+    "text": "A workshop \"React high level\" very complete with an expert that answers every of my questions."
+  },
+  {
+    "name": "Jeremy Robert",
+    "jobTitle": "Developer at Veolia",
+    "slug": "jeremy-robert",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/j%C3%A9r%C3%A9my-robert-9987b8a8",
+    "text": "Very good workshop, Greg is a very good teacher and an experienced developer. He takes time to explain if we feel lost. I highly recommend!"
+  },
+  {
+    "name": "David Poulin",
+    "jobTitle": "Freelance architect DevOps, Cloud & Mobility",
+    "slug": "david-poulin",
+    "linkType": "linkedin",
+    "url": "https://fr.linkedin.com/in/dapoulin",
+    "text": "I spent 2 days with Greg in a beautiful place, and I like it very much! Greg is great, he takes time to listen, explain, and understand, I highly recommend if you want to level-up on React, GraphQL & co!"
+  }
+]

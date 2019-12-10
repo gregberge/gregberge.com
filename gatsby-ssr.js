@@ -1,7 +1,6 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from 'react'
+import { I18nProvider } from './src/components/I18nContext'
 
-// You can delete this file if you're not using it
+export function wrapPageElement({ element, props: { pageContext } }) {
+  return <I18nProvider langKey={pageContext.langKey}>{element}</I18nProvider>
+}

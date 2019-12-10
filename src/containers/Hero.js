@@ -35,14 +35,14 @@ const MixBackground = styled.div`
   -webkit-mask-composite: source-in;
 `
 
-const IntroText = styled.p`
+export const HeroIntro = styled.p`
   font-family: monospace;
   font-size: 16;
   margin: 0;
   color: accent;
 `
 
-const Title = styled.h1`
+export const HeroTitle = styled.h1`
   margin: 0;
   font-size: 40;
   font-weight: 700;
@@ -59,29 +59,18 @@ const Title = styled.h1`
   )}
 `
 
-const TeaserText = styled.p`
+export const HeroTeaser = styled.p`
   margin: 4 0;
   font-size: 20;
   max-width: 560;
 `
 
-export function Hero() {
+export function Hero({ children }) {
   return (
     <PageContainer forwardedAs="section" minHeight="85vh">
       <Dots />
       <MixBackground />
-      <Container position="relative">
-        <IntroText>Hi, my name is</IntroText>
-        <Title>
-          <strong>Greg Bergé.</strong>
-          <br />I help people make the web great.
-        </Title>
-        <TeaserText>
-          I am a software engineer based in Paris. I create tools and teach how
-          to build high quality websites and applications using JavaScript and
-          React.
-        </TeaserText>
-      </Container>
+      <Container position="relative">{children}</Container>
     </PageContainer>
   )
 }

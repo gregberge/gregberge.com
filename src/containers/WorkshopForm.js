@@ -3,6 +3,7 @@ import styled, { Box } from '@xstyled/styled-components'
 import { FORM_ERROR } from 'final-form'
 import { Form } from 'react-final-form'
 import { InputField, Button, mustBeEmail } from '../components/Form'
+import { useLangKey } from '../components/I18nContext'
 
 const Success = styled.div`
   text-align: center;
@@ -11,10 +12,41 @@ const Success = styled.div`
   margin: 5 0;
 `
 
+const locales = {
+  en: {
+    success: 'Thanks! I&apos;ll call you back as quickly as possible.',
+    name: 'Name',
+    email: 'Email',
+    role: 'Role',
+    company: 'Company',
+    teamSize: 'Team Size',
+    city: 'City',
+    country: 'Country',
+    message: 'How can I help you?',
+    submit: 'Submit',
+    submitting: 'Submitting...',
+  },
+  fr: {
+    success: 'Merci ! Je vous recontacte très rapidement !',
+    name: 'Nom',
+    email: 'Email',
+    role: 'Role',
+    company: 'Société',
+    teamSize: 'Taille de l’équipe',
+    city: 'Ville',
+    country: 'Pays',
+    message: 'Comment puis-je vous aider ?',
+    submit: 'Envoyer',
+    submitting: 'Envoi en cours...',
+  },
+}
+
 export function WorkshopForm() {
+  const langKey = useLangKey()
+  const t = locales[langKey]
+
   return (
     <Form
-      defaultError="An error happen, please retry"
       onSubmit={values => {
         const body = new URLSearchParams()
         body.append('form-name', 'workshop')
@@ -32,11 +64,7 @@ export function WorkshopForm() {
     >
       {({ handleSubmit, submitSucceeded, submitting }) => (
         <>
-          {submitSucceeded && (
-            <Success>
-              Thanks! I&apos;ll call you back as quickly as possible.
-            </Success>
-          )}
+          {submitSucceeded && <Success>{t.success}</Success>}
           {!submitSucceeded && (
             <form
               name="workshop"
@@ -46,37 +74,37 @@ export function WorkshopForm() {
             >
               <Box row mx={-3} my={4}>
                 <Box col={{ xs: 1, md: 1 / 3 }} px={3} py={2}>
-                  <InputField name="name" label="Name" required />
+                  <InputField name="name" label={t.name} required />
                 </Box>
                 <Box col={{ xs: 1, md: 1 / 3 }} px={3} py={2}>
                   <InputField
                     name="email"
-                    label="Email"
+                    label={t.email}
                     type="email"
                     validate={mustBeEmail}
                     required
                   />
                 </Box>
                 <Box col={{ xs: 1, md: 1 / 3 }} px={3} py={2}>
-                  <InputField name="role" label="Role" required />
+                  <InputField name="role" label={t.role} required />
                 </Box>
                 <Box col={{ xs: 1, md: 2 / 3 }} px={3} py={2}>
-                  <InputField name="company" label="Company" />
+                  <InputField name="company" label={t.company} />
                 </Box>
                 <Box col={{ xs: 1, md: 1 / 3 }} px={3} py={2}>
                   <InputField
                     name="teamSize"
-                    label="Team Size"
+                    label={t.teamSize}
                     type="number"
                     placeholder="10"
                   />
                 </Box>
                 <Box col={{ xs: 1, md: 7 / 12 }} px={3} py={2}>
-                  <InputField name="city" label="City" />
+                  <InputField name="city" label={t.city} />
                 </Box>
 
                 <Box col={{ xs: 1, md: 5 / 12 }} px={3} py={2}>
-                  <InputField name="country" label="Country" />
+                  <InputField name="country" label={t.country} />
                 </Box>
 
                 <Box col={1} px={3} py={2}>
@@ -84,13 +112,13 @@ export function WorkshopForm() {
                     fieldAs="textarea"
                     rows={4}
                     name="message"
-                    label="How can I help you?"
+                    label={t.message}
                   />
                 </Box>
 
                 <Box col px={3} py={2} display="flex" justifyContent="flex-end">
                   <Button disabled={submitting} type="submit">
-                    {submitting ? 'Submitting...' : 'Submit'}
+                    {submitting ? t.submitting : t.submit}
                   </Button>
                 </Box>
               </Box>

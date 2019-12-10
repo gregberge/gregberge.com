@@ -19,6 +19,13 @@ module.exports = {
   plugins: [
     'gatsby-plugin-sitemap',
     {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyDefault: 'en',
+        useLangKeyLayout: false,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
