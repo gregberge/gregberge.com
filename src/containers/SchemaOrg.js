@@ -55,6 +55,10 @@ export function SchemaOrg({
             '@type': 'Person',
             name: 'Greg Bergé',
           },
+          publisher: {
+            '@type': 'Person',
+            name: 'Greg Bergé',
+          },
           mainEntityOfPage: {
             '@type': 'WebSite',
             '@id': canonicalUrl,
