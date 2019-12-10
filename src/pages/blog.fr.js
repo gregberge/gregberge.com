@@ -4,6 +4,7 @@ import { AppLayout } from '../containers/AppLayout'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { PageContainer } from '../components/Container'
 import { LatestArticles } from '../containers/LatestArticles'
+import { Seo } from '../containers/Seo'
 
 export default function IndexPage({ data }) {
   const edges = data.en.edges.map(enEdge => {
@@ -14,6 +15,7 @@ export default function IndexPage({ data }) {
   })
   return (
     <AppLayout>
+      <Seo title="Greg Bergé — Blog" />
       <PageContainer>
         <SectionTitle>Blog</SectionTitle>
         <SectionDescription>
@@ -56,6 +58,9 @@ export const pageQuery = graphql`
       node {
         excerpt(pruneLength: 190)
         id
+        fields {
+          link
+        }
         frontmatter {
           title
           slug

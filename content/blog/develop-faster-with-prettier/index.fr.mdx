@@ -1,0 +1,92 @@
+---
+slug: 'develop-faster-with-prettier'
+title: 'Développez plus vite avec Prettier'
+date: '2017-08-29'
+author: 'Greg Bergé'
+published: true
+description: 'Prettier est le formateur de code de JavaScript. Votre code JavaScript, JSX, CSS ou GraphQL est automatiquement formaté à la sauvegarde !'
+categories:
+  - 'javascript'
+banner: './images/banner.png'
+bannerCredit: 'Logo de Prettier'
+---
+
+Espaces ou tabulations ? Points-virgules ou pas ? Si vous êtes développeur, vous savez probablement de quoi je parle. Si vous ne l'êtes pas, sachez que ces questions sont au coeur des débats houleux au sein de chaque équipe de développement.
+
+Ces débats peuvent paraître absurdes mais ils sont très importants. Respecter un coding-style permet de faciliter le travail de chacun et d'aller tous dans la même direction. Seulement on est tous d'accord pour dire que ce n'est pas très productif et que ça fait perdre du temps.
+
+Il faut savoir que le développeur est quelqu'un de très rigoureux. Une fois les débats terminés et tout le monde d'accord, il va suivre la règle imposée coûte que coûte. On s'est tous déjà retrouvé à modifier un bout de code à la main pour refaire l'indentation pendant 10 minutes tel un maniaque compulsif. On se sent un peu bête sur le moment mais à la fin on se sent mieux mais aussi un peu coupable d'avoir sacrifié 10 minutes de son temps...
+
+## Les formateurs de code
+
+Beaucoup de langages ont résolu ces problèmes, ils fournissent un formateur de code avec le langage. On trouve par exemple [`gofmt` pour Go](https://golang.org/cmd/gofmt/) et [`rustfmt` pour Rust](https://github.com/rust-lang-nursery/rustfmt).
+
+C'est assez simple, vous appelez une commande sur votre fichier (souvent à la sauvegarde) et votre code se retrouve magiquement formaté selon des règles déjà établies. Adieu les débats, adieu le temps passé à ré-indenter les 10 lignes du copain, on sauvegarde et on est content.
+
+Lorsqu'on utilise un formateur de code pour la première fois, on a tendance à être un peu frustré. Puis au bout de quelques temps on lui fait confiance et on est vraiment heureux qu'il fasse le sale boulot pour nous !
+
+## Prettier
+
+Jusqu'à présent, JavaScript n'avait pas de formateur efficace. C'est là que Prettier a fait son apparition. Initié par [James Long](https://github.com/jlongster) le projet a été repéré et propulsé par [Christopher Chedeau](https://github.com/vjeux), un développeur travaillant chez Facebook notamment à l'origine du succès de React.
+
+**Prettier** est devenu **le formateur** pour JavaScript. Avec le support de **JSX**, **CSS**, **GraphQL** et même de **[styled-components](https://www.styled-components.com/)**, le projet a vite gagné en popularité en particulier chez les développeurs front-end.
+
+Avec [Prettier](https://github.com/prettier/prettier/), l'expérience est incroyable, en plus de balayer tous les débats il permet de se focaliser sur le code sans se soucier du reste. C'est pour moi sans conteste **l'outil qui m'a fait gagner le plus de temps ces 5 dernières années**. J'estime à environ **1h par jour le temps gagné grâce à Prettier**.
+
+## Comment l'utiliser ?
+
+Ce qui a aussi fait le succès de Prettier, c'est sa simplicité d'utilisation.
+
+Il existe des [plugins pour tous vos éditeurs préférés](https://prettier.io/docs/en/editors.html), Atom, Visual Studio Code, Sublime Text...
+
+Une fois le plugin installé, il vous est possible de régler quelques paramètres :
+
+- Longueur des lignes
+- Tabulations ou espaces
+- Points-virgules ou non
+- Guillemets simples ou doubles
+- Virgules de fin de ligne
+
+Et c'est là que la magie opère, à chaque fois que vous sauvegardez un fichier le code est automatiquement formaté ! Elle est pas belle la vie ?
+
+![Prettier en action](./images/prettier-demo.gif)
+
+## Prettier 1.6
+
+Depuis la dernière version de Prettier sortie aujourd'hui, il est possible de spécifier un fichier de configuration par projet.
+
+Il vous suffit d'ajouter un `.prettierrc` à la racine du projet et d'y définir vos règles :
+
+```js
+// .prettierrc
+{
+  "trailingComma": "es5",
+  "singleQuote": true
+}
+```
+
+[De nombreuses options](https://prettier.io/docs/en/options.html) sont disponibles.
+
+Vous pouvez également choisir quels fichiers ignorer avec un `.prettierignore` :
+
+```
+# .prettierignore
+dist/
+package.json
+```
+
+Cela vous permettra d'éviter les accidents et d'on-boarder vos développeurs encore plus rapidement !
+
+## Comment fonctionne Prettier ?
+
+Avec l'arrivée d'ES6 et de Babel, le JavaScript s'est beaucoup outillé autour du parsing de code. C'est grâce à ces avancées que l'on peut aujourd'hui formater son code aussi simplement avec Prettier.
+
+A l'aide de [babylon](https://github.com/babel/babylon) le générateur d'AST de Babel, Prettier génère un AST et reconstruit un code en se basant sur les règles que vous avez choisies. Un AST ou Abstract Syntax Tree est une représentation sous forme d'arbre d'un code, pour comprendre ce que c'est vous pouvez jeter un oeil à [AST Explorer](https://astexplorer.net).
+
+<div style="background-color: white; padding: 10px;">
+  <img src="./images/ast-transform.png" alt="AST Transform" />
+</div>
+
+C'est à ce fonctionnement que Prettier doit sa rapidité et sa fiabilité. Bien sûr Prettier est open-source et les plus curieux peuvent consulter [le code](https://github.com/prettier/prettier).
+
+Mais si vous voulez contribuer, n'oubliez pas d'[installer Prettier](https://github.com/prettier/prettier), car oui le code de Prettier est formatté avec Prettier ?.

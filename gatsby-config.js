@@ -1,20 +1,6 @@
-const config = require('./config/website')
-
-const { siteUrl } = config
-
 module.exports = {
   siteMetadata: {
-    siteUrl,
-    title: config.siteTitle,
-    twitterHandle: config.twitterHandle,
-    description: config.siteDescription,
-    keywords: [
-      'Software Engineer',
-      'React Training',
-      'Testing JavaScript Training',
-    ],
-    canonicalUrl: siteUrl,
-    image: config.siteLogo,
+    canonicalUrl: 'https://gregberge.com',
   },
   plugins: [
     'gatsby-plugin-sitemap',
@@ -57,7 +43,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1000,
+              maxWidth: 800,
             },
           },
           { resolve: 'gatsby-remark-embedder' },

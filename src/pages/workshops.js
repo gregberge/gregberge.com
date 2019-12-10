@@ -9,6 +9,7 @@ import styled, {
   useColorMode,
 } from '@xstyled/styled-components'
 import { AppLayout } from '../containers/AppLayout'
+import { Seo } from '../containers/Seo'
 import { ReviewCard } from '../components/ReviewCard'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import {
@@ -184,6 +185,7 @@ export default function Workshops() {
 
   return (
     <AppLayout>
+      <Seo title="React Hooks Workshop by Greg Bergé" />
       <PageContainer>
         <SectionTitle>Workshops</SectionTitle>
         <SectionDescription>
@@ -198,7 +200,7 @@ export default function Workshops() {
         >
           <Logo />
           <CardHeader pr="40%">
-            <WorkshopTitle>Advanced React</WorkshopTitle>
+            <WorkshopTitle>React Hooks</WorkshopTitle>
             <p>From the creator of Loadable Components, SVGR & Smooth UI.</p>
           </CardHeader>
           <CardBody>

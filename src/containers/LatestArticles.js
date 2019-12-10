@@ -14,7 +14,7 @@ export function LatestArticles({ edges }) {
     <Box row my={-2}>
       {edges.map(edge => (
         <Box key={edge.node.id} col={1} py={2}>
-          <CardLink as={Link} to={`/blog/${edge.node.frontmatter.slug}`}>
+          <CardLink as={Link} to={edge.node.fields.link}>
             <Card>
               <CardBody>
                 <CardTitle>{edge.node.frontmatter.title}</CardTitle>

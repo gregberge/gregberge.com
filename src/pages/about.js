@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { Container } from '../components/Container'
 import { AppLayout } from '../containers/AppLayout'
+import { Seo } from '../containers/Seo'
 import { AboutContainer, AboutText, AboutImage } from '../containers/About'
 
 export default function AboutPage() {
@@ -19,6 +20,7 @@ export default function AboutPage() {
   `)
   return (
     <AppLayout>
+      <Seo title="About Greg Bergé" />
       <AboutContainer>
         <Container>
           <SectionTitle>Hi I&#39;m Greg!</SectionTitle>

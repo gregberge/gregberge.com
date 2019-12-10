@@ -11,6 +11,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import humanNumber from 'human-number'
 import { FaGithub } from 'react-icons/fa'
 import { AppLayout } from './AppLayout'
+import { Seo } from './Seo'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { PageContainer } from '../components/Container'
 import { ProjectShape } from '../components/Project'
@@ -423,6 +424,7 @@ export function ProjectsPageTemplate({ title, intro, projects }) {
   `)
   return (
     <AppLayout>
+      <Seo title={`Greg Bergé — ${title}`} />
       <PageContainer>
         <SectionTitle>{title}</SectionTitle>
         <SectionDescription>{intro}</SectionDescription>

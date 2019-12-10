@@ -9,6 +9,7 @@ import styled, {
   useColorMode,
 } from '@xstyled/styled-components'
 import { AppLayout } from '../containers/AppLayout'
+import { Seo } from '../containers/Seo'
 import { ReviewCard } from '../components/ReviewCard'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import {
@@ -21,7 +22,7 @@ import {
 import { PageContainer } from '../components/Container'
 import { WorkshopForm } from '../containers/WorkshopForm'
 import { AdvancedReactLogo } from '../components/AdvancedReactLogo'
-import reviews from '../../data/reviews.en.json'
+import reviews from '../../data/reviews.fr.json'
 
 const clients = [
   {
@@ -184,6 +185,7 @@ export default function Workshops() {
 
   return (
     <AppLayout>
+      <Seo title="Formation React Hooks par Greg Bergé" />
       <PageContainer>
         <SectionTitle>Formations</SectionTitle>
         <SectionDescription>
@@ -199,7 +201,7 @@ export default function Workshops() {
         >
           <Logo />
           <CardHeader pr="40%">
-            <WorkshopTitle>React Avancé</WorkshopTitle>
+            <WorkshopTitle>React Hooks</WorkshopTitle>
             <p>Par le créateur de Loadable Components, SVGR & Smooth UI.</p>
           </CardHeader>
           <CardBody>

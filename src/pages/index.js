@@ -5,11 +5,13 @@ import { SectionTitle } from '../components/Section'
 import { Container } from '../components/Container'
 import { Hero, HeroIntro, HeroTitle, HeroTeaser } from '../containers/Hero'
 import { LatestArticles } from '../containers/LatestArticles'
+import { Seo } from '../containers/Seo'
 
 export default function IndexPage({ data }) {
   return (
     <AppLayout>
       <Hero>
+        <Seo />
         <HeroIntro>Hi, my name is</HeroIntro>
         <HeroTitle>
           <strong>Greg Bergé.</strong>
@@ -43,6 +45,9 @@ export const pageQuery = graphql`
         node {
           excerpt(pruneLength: 190)
           id
+          fields {
+            link
+          }
           frontmatter {
             title
             slug

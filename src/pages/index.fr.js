@@ -5,6 +5,7 @@ import { SectionTitle } from '../components/Section'
 import { Container } from '../components/Container'
 import { Hero, HeroIntro, HeroTitle, HeroTeaser } from '../containers/Hero'
 import { LatestArticles } from '../containers/LatestArticles'
+import { Seo } from '../containers/Seo'
 
 export default function IndexPage({ data }) {
   const edges = data.en.edges.map(enEdge => {
@@ -15,6 +16,7 @@ export default function IndexPage({ data }) {
   })
   return (
     <AppLayout>
+      <Seo />
       <Hero>
         <HeroIntro>Bonjour, je m’appelle</HeroIntro>
         <HeroTitle>
@@ -23,9 +25,9 @@ export default function IndexPage({ data }) {
           Je suis passionné par le web.
         </HeroTitle>
         <HeroTeaser>
-          Je suis un ingénieur basé à Paris. Je réalise et enseigner comment
-          créer des sites webs et des applications de hautes qualités en
-          utilisant React et JavaScript.
+          Je suis un ingénieur basé à Paris. Je réalise et enseigne comment
+          créer des sites webs et des applications de haute qualité en utilisant
+          React et JavaScript.
         </HeroTeaser>
       </Hero>
       <Container forwardedAs="section" pb={5}>
@@ -66,6 +68,9 @@ export const pageQuery = graphql`
       node {
         excerpt(pruneLength: 190)
         id
+        fields {
+          link
+        }
         frontmatter {
           title
           slug

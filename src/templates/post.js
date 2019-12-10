@@ -5,11 +5,12 @@ import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import Img from 'gatsby-image'
 import { MDXProvider } from '@mdx-js/react'
 import Markdown from 'react-markdown'
+import { Location } from '@reach/router'
 import { PageContainer } from '../components/Container'
 import { Code } from '../components/Code'
 import { Share } from '../components/Share'
 import { AppLayout } from '../containers/AppLayout'
-import config from '../../config/website'
+import { Seo } from '../containers/Seo'
 
 export function formatReadingTime(minutes) {
   const cups = Math.round(minutes / 5)
@@ -185,6 +186,24 @@ const Article = styled.article`
     display: inline;
   }
 
+  .gatsby-resp-image-link {
+    border-bottom: 0;
+  }
+
+  .gatsby-resp-image-background-image {
+    display: none !important;
+  }
+
+  img {
+    max-width: 100%;
+    margin: 4 auto;
+  }
+
+  .top-img img {
+    margin: 0;
+    max-width: auto;
+  }
+
   ${up(
     'md',
     css`
@@ -195,10 +214,16 @@ const Article = styled.article`
 
 export default function Post({ data }) {
   const { frontmatter, body } = data.mdx
-  const blogPostUrl = `${config.siteUrl}/blog/${frontmatter.slug}`
 
   return (
     <AppLayout>
+      <Seo
+        title={frontmatter.title}
+        description={frontmatter.description}
+        image={frontmatter.banner.childImageSharp.social.src}
+        datePublished={frontmatter.date}
+        isBlogPost
+      />
       <MDXProvider components={components}>
         <PageContainer>
           <Article>
@@ -209,7 +234,7 @@ export default function Post({ data }) {
               </time>
               <span>{formatReadingTime(data.mdx.timeToRead)}</span>
             </section>
-            <figure>
+            <figure className="top-img">
               <Img fluid={frontmatter.banner.childImageSharp.fluid} />
               <Markdown renderers={{ paragraph: 'figcaption' }}>
                 {frontmatter.bannerCredit}
@@ -218,11 +243,14 @@ export default function Post({ data }) {
             <Markdown>{frontmatter.description}</Markdown>
             <MDXRenderer>{body}</MDXRenderer>
           </Article>
-          <Share
-            url={blogPostUrl}
-            title={frontmatter.title}
-            twitterHandle={config.twitterHandle}
-          />
+          <Location>
+            {({ location }) => (
+              <Share
+                url={`${data.site.siteMetadata.canonicalUrl}${location.pathname}`}
+                title={frontmatter.title}
+              />
+            )}
+          </Location>
         </PageContainer>
       </MDXProvider>
     </AppLayout>
@@ -231,6 +259,12 @@ export default function Post({ data }) {
 
 export const pageQuery = graphql`
   query($id: String!) {
+    site {
+      siteMetadata {
+        canonicalUrl
+      }
+    }
+
     mdx(id: { eq: $id }) {
       body
       timeToRead
@@ -242,6 +276,9 @@ export const pageQuery = graphql`
         date
         banner {
           childImageSharp {
+            social: fixed(width: 1280, height: 640) {
+              src
+            }
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
             }
@@ -249,7 +286,6 @@ export const pageQuery = graphql`
         }
         bannerCredit
         slug
-        keywords
       }
     }
   }

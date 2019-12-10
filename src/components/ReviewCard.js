@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { Box } from '@xstyled/styled-components'
 import { FaEnvelope, FaTwitter, FaLinkedin } from 'react-icons/fa'
 import Img from 'gatsby-image'
+import { useLangKey } from './I18nContext'
 
 const Review = styled.div`
   font-size: 14;
@@ -37,7 +38,21 @@ const Review = styled.div`
   }
 `
 
+const locales = {
+  en: {
+    tweet: 'See tweet',
+    linkedin: 'See LinkedIn account',
+  },
+  fr: {
+    tweet: 'Voir le tweet',
+    linkedin: 'Voir le compte LinkedIn',
+  },
+}
+
 export function ReviewCard({ review }) {
+  const langKey = useLangKey()
+  const t = locales[langKey]
+
   return (
     <Review>
       <Box row mx={-2}>
@@ -51,11 +66,7 @@ export function ReviewCard({ review }) {
         <Box col="auto" px={2}>
           {review.url ? (
             <a
-              title={
-                review.linkType === 'twitter'
-                  ? 'See Tweet'
-                  : 'See LinkedIn account'
-              }
+              title={review.linkType === 'twitter' ? t.tweet : t.linkedin}
               href={review.url}
             >
               {review.linkType === 'twitter' ? <FaTwitter /> : <FaLinkedin />}

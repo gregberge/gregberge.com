@@ -6,6 +6,12 @@ function getLangKey(node) {
   return matches[1]
 }
 
+function getPath(node) {
+  if (node.fields.langKey === DEFAULT_LANG_KEY)
+    return `/blog/${node.frontmatter.slug}`
+  return `/${node.fields.langKey}/blog/${node.frontmatter.slug}`
+}
+
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === 'Mdx') {
@@ -15,13 +21,12 @@ exports.onCreateNode = ({ node, actions }) => {
       name: `langKey`,
       value: langKey,
     })
+    createNodeField({
+      node,
+      name: `link`,
+      value: getPath({ ...node, fields: { langKey } }),
+    })
   }
-}
-
-function getPath(node) {
-  if (node.fields.langKey === DEFAULT_LANG_KEY)
-    return `/blog/${node.frontmatter.slug}`
-  return `/${node.fields.langKey}/blog/${node.frontmatter.slug}`
 }
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -60,7 +65,18 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve('./src/templates/post.js'),
       context: {
         id: node.id,
+        langKey: node.fields.langKey,
       },
     })
   })
+}
+
+exports.sourceNodes = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type MdxFrontmatter {
+      banner: File
+    }
+  `
+  createTypes(typeDefs)
 }

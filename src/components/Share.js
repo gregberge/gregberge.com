@@ -9,7 +9,6 @@ const InnerShare = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-size: 18;
-  margin: 0 -2;
 
   > div {
     margin: 0 2;
@@ -54,24 +53,16 @@ const Line = styled.div`
   border-bottom-color: light500;
 `
 
-export function Share({ url, title, twitterHandle }) {
+export function Share({ url, title }) {
   return (
     <InnerShare>
       <Neon>❤</Neon>
       <span>Share article</span>
       <Line />
-      <TwitterShareButton
-        url={url}
-        title={title}
-        via={twitterHandle.split('@').join('')}
-      >
+      <TwitterShareButton url={url} title={title} via="neoziro">
         <FaTwitter />
       </TwitterShareButton>
-      <FacebookShareButton
-        url={url}
-        quote={title}
-        via={twitterHandle.split('@').join('')}
-      >
+      <FacebookShareButton url={url} quote={title}>
         <FaFacebook />
       </FacebookShareButton>
     </InnerShare>

@@ -1,0 +1,278 @@
+---
+slug: 'svg-to-react-component-with-svgr'
+title: 'Transform SVG into React Components using SVGR'
+date: '2017-12-07'
+author: 'Greg Bergé'
+published: true
+description: 'Transform your SVG into React Components using SVGR to create rich React applications with SVG icons.'
+categories:
+  - 'javascript'
+  - 'react'
+banner: './images/banner.jpg'
+bannerCredit: 'Photo by [Daniele Levis Pelusi](https://unsplash.com/@yogidan2012?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/automation?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
+---
+
+As a React developer, you've probably found yourself having to integrate SVG into your applications. There are several ways to proceed, the most elegant is to transform your SVG images into React component. We will see here how to go about it.
+
+## How to integrate SVG?
+
+There are several ways to integrate SVG into your React application:
+
+### 1. Use an img tag
+
+```js
+const Star = props => (
+  <img src="star.svg" alt="Star" width="20" height="20" {...props} />
+)
+```
+
+This solution is quite viable. You can use [SVGO](https://jakearchibald.github.io/svgomg/) to clean up your SVG and [file-loader](https://github.com/webpack-contrib/file-loader) if you use webpack. However, it has some limitations:
+
+- An HTTP request by SVG
+- Can not stylize SVG (especially color)
+
+### 2. Use JSX
+
+This solution consists of integrating the SVG directly into the React component in JSX. It has several advantages:
+
+- No more requests, it's bundled with your JS
+- We can stylize each part of the SVG
+- "currentColor" allows us to directly inherit the color of the text
+
+Integrating your SVG directly into JSX is the preferred solution for easy maintenance and total control. However, it requires a tricky operation, moving from an SVG file to a React component. At first glance, it's a copy-and-paste, but the JSX is not exactly HTML and it's very tedious when you have a lot of icons.
+
+## Switch from SVG to React component
+
+<div style="max-width: 400px; background-color: white; margin: 40px auto; border-radius: 20px;">
+  <img src="./images/svgr-logo.png" alt="SVGR logo" />
+</div>
+
+This is where [SVGR](https://github.com/smooth-code/svgr) comes in, allowing you to automate the generation of React components from your SVGs. Let's take a concrete example from an SVG generated via [Sketch](https://www.sketch.com/):
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="1px" viewBox="0 0 48 1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="19-Separator" transform="translate(-129.000000, -156.000000)" fill="#063855">
+            <g id="Controls/Settings" transform="translate(80.000000, 0.000000)">
+                <g id="Content" transform="translate(0.000000, 64.000000)">
+                    <g id="Group" transform="translate(24.000000, 56.000000)">
+                        <g id="Group-2">
+                            <rect id="Rectangle-5" x="25" y="36" width="48" height="1"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+```
+
+By typing the SVGR command line:
+
+```
+npx svgr --no-semi --icon --replace-attr-value "#063855=currentColor" my-icon.svg
+```
+
+I get the code of the following component:
+
+```js
+import React from 'react'
+
+const SvgComponent = props => (
+  <svg width="1em" height="1em" viewBox="0 0 48 1" {...props}>
+    <path d="M0 0h48v1H0z" fill="currentColor" fillRule="evenodd" />
+  </svg>
+)
+
+export default SvgComponent
+```
+
+Pretty cool, no 😏?
+
+## Integrate SVGR into my project
+
+There are several ways to integrate SVGR into your project. It's up to you to choose the one that best fits your work habits.
+
+### 1. Command line usage
+
+To use SVGR as CLI, first install command line:
+
+```
+npm install @svgr/cli
+```
+
+A good way to do this is to add a script to your `package.json` to automate the SVG transformation.
+
+```js
+// package.json
+{
+  "scripts": {
+    "build:svg": "svgr -d svg/ components/
+  }
+}
+```
+
+The following script transforms each SVG in the "svg /" folder by composing React in "components/".
+
+To run it: `npm run build:svg`
+
+### 2. Use webpack
+
+For webpack users, SVGR offers a loader, first install it:
+
+```
+npm install @svgr/webpack
+```
+
+So you can directly import your SVG into your code and let the magic of webpack operate. Just add the loader like this:
+
+```js
+// webpack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        use: ['babel-loader', '@svgr/webpack'],
+      },
+    ],
+  },
+}
+```
+
+From now on, you can directly import your SVG as a React component. They will be automatically transformed by SVGR.
+
+```js
+import React from 'react'
+import Star from 'svg/star.svg'
+
+const App = () => (
+  <div>
+    <Star />
+  </div>
+)
+```
+
+### 3. Use Node.js
+
+The last use, intended for more advanced users, allows you to use SVGR directly in a Node.js script.
+
+Don't forget to install it:
+
+```
+npm install @svgr/core
+```
+
+Here's an example code that programmatically transforms SVG:
+
+```js
+import svgr from '@svgr/core'
+
+const svgCode = `
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="88px" height="88px" viewBox="0 0 88 88" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Dismiss</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Blocks" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Dismiss" stroke="#063855" stroke-width="2">
+            <path d="M51,37 L37,51" id="Shape"></path>
+            <path d="M51,51 L37,37" id="Shape"></path>
+        </g>
+    </g>
+</svg>
+`
+
+svgr(svgCode, { prettier: false, componentName: 'MyComponent' }).then(
+  jsCode => {
+    console.log(jsCode)
+  },
+)
+```
+
+## Go further with SVGR
+
+SVGR allows you to go very far in the transformation. A lot of options are available: optimization of SVG, formatting code, adding a title ... I will not say all but you can find them in [the documentation](https://www.smooth-code.com/open-source/svgr/docs/getting-started/).
+
+## Transform your icons
+
+A "font-icon" is a font whose characters have been replaced by icons. Icons have the flexibility of a font, and you can change their size and color via CSS. Transform your SVG into JSX simply with SVGR to create React applications.
+
+It is possible to obtain the same behavior with SVGR, here is an example:
+
+```
+svgr --icon --replace-attr-value "#000000=currentColor" my-icon.svg
+```
+
+On exploite deux options de SVGR :
+
+- `--icon` : spécifie "width" et "height" à "1em"
+- `--replace-attr-value "#000000=currentColor"` : remplace "#000000" par "currentColor" dans tous les attributs du SVG
+
+With these two options you will get the same behavior as a classic "font-icon"!
+
+## How SVGR works?
+
+SVGR converts SVG to JSX. To achieve this, he delegates each part of the work to specialized tools:
+
+- [SVGO](https://github.com/svg/svgo) for optimization
+- [Babel](https://babeljs.io/) for transformation
+- [Prettier](https://prettier.io/) for formatting
+
+Let's linger a little on the most delicate phase, the transformation. It allows to pass from an SVG / HTML code to JSX understood by React. Where most libraries go through a series of regular expressions, Babel allows us to apply transformations directly to the HTML AST, namely the DOM. In other words, it breaks down the structure of the code and applies the transformation.
+
+This allows SVGR to apply complicated transformations such as "--replace-attr-value" without any edge effects!
+
+The following code corresponding to the transformation performed when you enable the "replace-attr-value" option. Those familiar with Babel plugins and AST manipulation should not be lost.
+
+```js
+const replaceAttrValue = ({ types: t, template }, opts) => {
+  function getAttributeValue(value, literal) {
+    if (typeof value === 'string' && literal) {
+      return t.jsxExpressionContainer(template.ast(value).expression)
+    }
+
+    if (typeof value === 'string') {
+      return t.stringLiteral(value)
+    }
+
+    if (typeof value === 'boolean') {
+      return t.jsxExpressionContainer(t.booleanLiteral(value))
+    }
+
+    if (typeof value === 'number') {
+      return t.jsxExpressionContainer(t.numericLiteral(value))
+    }
+
+    return null
+  }
+
+  return {
+    visitor: {
+      JSXAttribute(path) {
+        const valuePath = path.get('value')
+        if (!valuePath.isStringLiteral()) return
+
+        opts.values.forEach(({ value, newValue, literal }) => {
+          if (!valuePath.isStringLiteral({ value })) return
+          valuePath.replaceWith(getAttributeValue(newValue, literal))
+        })
+      },
+    },
+  }
+}
+
+export default replaceAttrValue
+```
+
+This transformation replaces the value of an attribute without any edge effects. It's a lot safer than a regular expression!
+
+For the more curious you can find the code of the project [SVGR on GitHub](http://github.com/smooth-code/svgr/).
+
+I hope that SVGR will save you as much time as I earn every day!
