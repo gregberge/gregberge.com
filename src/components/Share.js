@@ -4,7 +4,7 @@ import { FaTwitter, FaFacebook } from 'react-icons/fa'
 import { TwitterShareButton, FacebookShareButton } from 'react-share'
 
 const InnerShare = styled.div`
-  margin: 5 0;
+  margin: 5 -2;
   display: flex;
   align-items: center;
   justify-content: flex-start;

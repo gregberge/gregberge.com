@@ -190,10 +190,7 @@ const Article = styled.article`
     border-bottom: 0;
   }
 
-  .gatsby-resp-image-background-image {
-    display: none !important;
-  }
-
+  .gatsby-resp-image-wrapper,
   img {
     max-width: 100%;
     margin: 4 auto;
