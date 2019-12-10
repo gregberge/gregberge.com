@@ -414,7 +414,7 @@ export function ProjectsPageTemplate({ title, intro, projects }) {
             relativePath
             childImageSharp {
               fluid(maxWidth: 180) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
               }
             }
           }

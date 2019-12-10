@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const I18nContext = React.createContext()
+const I18nContext = React.createContext('en')
 
 export function I18nProvider({ langKey, children }) {
   return <I18nContext.Provider value={langKey}>{children}</I18nContext.Provider>

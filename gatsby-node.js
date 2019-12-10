@@ -59,7 +59,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Create blog posts pages.
   result.data.allMdx.edges.forEach(({ node }) => {
-    // const lang = getLang(node.fileAbsolutePath)
     createPage({
       path: getPath(node),
       component: require.resolve('./src/templates/post.js'),

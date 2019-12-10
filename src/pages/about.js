@@ -12,7 +12,7 @@ export default function AboutPage() {
       photo: file(relativePath: { eq: "react-europe.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
