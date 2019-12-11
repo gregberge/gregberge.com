@@ -22,6 +22,11 @@ const Switcher = styled.button`
   background-color: #a6b0f3;
   transition: all 0.2s linear;
   border: 0;
+  opacity: 0;
+
+  &.ready {
+    opacity: 1;
+  }
 
   &:focus {
     outline: none;
@@ -127,15 +132,14 @@ const Switcher = styled.button`
 
 export function DarkModeSwitcher() {
   const [mode, setMode] = useColorMode()
-  const [show, setShow] = React.useState(false)
+  const [ready, setReady] = React.useState(false)
   React.useEffect(() => {
-    setShow(true)
+    setReady(true)
   }, [])
-  if (!show) return null
   return (
     <Switcher
       type="button"
-      className={`switcher ${mode}`}
+      className={`switcher ${mode} ${ready ? 'ready' : ''}`}
       onClick={() => setMode(mode => (mode === 'light' ? 'dark' : 'light'))}
     >
       <div className="star star1" />
