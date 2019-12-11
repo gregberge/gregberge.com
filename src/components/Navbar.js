@@ -111,15 +111,27 @@ const MobileMenuContainer = styled.div`
       }
     }
   }
+
+  ${up(
+    'md',
+    css`
+      display: none;
+    `,
+  )}
 `
 
 function MobileMenu({ children, ...props }) {
+  const [show, setShow] = React.useState(false)
+  React.useEffect(() => {
+    setShow(true)
+  }, [])
   const handleClick = event => {
     if (event.target.tagName === 'A') {
       props.hide()
     }
   }
 
+  if (!show) return null
   return (
     <Dialog
       onClick={handleClick}
@@ -155,7 +167,7 @@ function MobileMenuDisclosure(props) {
 }
 
 export function Navbar({ children }) {
-  const dialog = useDialogState({ unstable_animated: true })
+  const dialog = useDialogState({ unstable_animated: true, visible: false })
   const md = useUp('md')
   const childrenArray = React.Children.toArray(children)
   const secondary = childrenArray.find(child => child.type === NavbarSecondary)
