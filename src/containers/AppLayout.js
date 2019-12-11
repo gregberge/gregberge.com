@@ -1,5 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Location } from '@reach/router'
 import {
   Layout,
   LayoutHeader,
@@ -13,13 +14,32 @@ import { AppNavbar } from './AppNavbar'
 import { AppFooter } from './AppFooter'
 import { Newsletter } from './Newsletter'
 
+function toEnglish(location) {
+  return location.pathname.replace(/^\/fr\//, '')
+}
+
+function toFrench(location) {
+  return `/fr${location.pathname}`
+}
+
 export function AppLayout({ children, langKey }) {
   return (
     <I18nProvider langKey={langKey}>
       <ThemeInitializer>
-        <Helmet>
-          <html lang={langKey} />
-        </Helmet>
+        <Location>
+          {({ location }) => (
+            <Helmet>
+              <html lang={langKey} />
+              <link
+                rel="alternate"
+                hrefLang={langKey === 'fr' ? 'en' : 'fr'}
+                href={`https://gregberge.com${
+                  langKey === 'fr' ? toEnglish(location) : toFrench(location)
+                }`}
+              />
+            </Helmet>
+          )}
+        </Location>
         <Layout>
           <GlobalStyle />
           <LayoutHeader>

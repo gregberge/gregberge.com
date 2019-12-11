@@ -52,7 +52,7 @@ function toEnglish(location) {
 }
 
 function toFrench(location) {
-  return `/fr/${location.pathname}`
+  return `/fr${location.pathname}`
 }
 
 export function AppFooter() {
