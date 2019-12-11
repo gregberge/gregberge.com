@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
-import styled from '@xstyled/styled-components'
+import { Link } from 'gatsby'
+import styled, { Box } from '@xstyled/styled-components'
 import { FaTwitter, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { Location } from '@reach/router'
 import { Container } from '../components/Container'
 import { useLangKey } from '../components/I18nContext'
 
@@ -44,6 +47,14 @@ const locales = {
   },
 }
 
+function toEnglish(location) {
+  return location.pathname.replace(/^\/fr\//, '')
+}
+
+function toFrench(location) {
+  return `/fr/${location.pathname}`
+}
+
 export function AppFooter() {
   const langKey = useLangKey()
   const t = locales[langKey]
@@ -51,6 +62,26 @@ export function AppFooter() {
     <Container display="flex" mt={4} pb={4}>
       <Copyright>Greg Bergé © {currentYear}</Copyright>
       <Socials>
+        <Location>
+          {({ location }) => (
+            <>
+              {langKey === 'en' && (
+                <SocialLink title="French" as={Link} to={toFrench(location)}>
+                  <Box as="span" fontSize={20} role="img" aria-label="French">
+                    🇫🇷
+                  </Box>
+                </SocialLink>
+              )}
+              {langKey === 'fr' && (
+                <SocialLink title="English" as={Link} to={toEnglish(location)}>
+                  <Box as="span" fontSize={20} role="img" aria-label="Anglais">
+                    🇬🇧
+                  </Box>
+                </SocialLink>
+              )}
+            </>
+          )}
+        </Location>
         <SocialLink title={t.twitter} href="https://twitter.com/neoziro">
           <FaTwitter />
         </SocialLink>
