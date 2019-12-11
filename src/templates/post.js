@@ -9,7 +9,6 @@ import { Location } from '@reach/router'
 import { PageContainer } from '../components/Container'
 import { Code } from '../components/Code'
 import { Share } from '../components/Share'
-import { AppLayout } from '../containers/AppLayout'
 import { Seo } from '../containers/Seo'
 
 export function formatReadingTime(minutes) {
@@ -218,11 +217,11 @@ const Article = styled.article`
   )};
 `
 
-export default function Post({ data, pageContext: { langKey } }) {
+export default function Post({ data }) {
   const { frontmatter, body } = data.mdx
 
   return (
-    <AppLayout langKey={langKey}>
+    <>
       <Seo
         title={frontmatter.title}
         description={frontmatter.description}
@@ -259,7 +258,7 @@ export default function Post({ data, pageContext: { langKey } }) {
           </Location>
         </PageContainer>
       </MDXProvider>
-    </AppLayout>
+    </>
   )
 }
 
