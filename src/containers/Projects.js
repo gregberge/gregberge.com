@@ -21,6 +21,7 @@ const rotateRight = keyframes`
   from {
     transform: rotate(0deg)
                perspective(200px)
+               translateZ(-8px)
                rotateY(2deg)
                translate(0px)
                rotate(0deg);
@@ -28,6 +29,7 @@ const rotateRight = keyframes`
   to {
     transform: rotate(360deg)
                perspective(200px)
+               translateZ(-8px)
                rotateY(2deg)
                translate(0px) 
                rotate(-360deg);
@@ -119,7 +121,7 @@ const Project = styled.div`
           }
 
           ${ProjectImageLink}:hover > svg {
-            transform: perspective(200px) rotateY(5deg) scale(1.05);
+            transform: scale(1.05);
           }
         `
       case 'left':
@@ -146,7 +148,7 @@ const Project = styled.div`
           }
 
           ${ProjectImageLink}:hover > svg {
-            transform: perspective(200px) rotateY(-5deg) scale(1.05);
+            transform: scale(1.05);
           }
         `
     }
@@ -345,7 +347,7 @@ function Projects({ data, projects }) {
       npm="@loadable/component"
       github="https://github.com/smooth-code/loadable-components"
       url="https://www.smooth-code.com/open-source/loadable-components/"
-      color="#E7E7E7"
+      color="#fff"
       description={projects['loadable-components'].description}
       tags={['React', 'Code Splitting', 'webpack', 'rollup']}
     />,
