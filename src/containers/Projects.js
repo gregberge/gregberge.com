@@ -13,6 +13,7 @@ import { FaGithub } from 'react-icons/fa'
 import { AppLayout } from './AppLayout'
 import { Seo } from './Seo'
 import { SectionTitle, SectionDescription } from '../components/Section'
+import { useLangKey } from '../components/I18nContext'
 import { PageContainer } from '../components/Container'
 import { ProjectShape } from '../components/Project'
 import { Card, CardBody, CardText } from '../components/Card'
@@ -219,6 +220,17 @@ function ProjectDescription({ children }) {
   )
 }
 
+const locales = {
+  en: {
+    stars: 'Number of stars on GitHub',
+    downloads: 'Number of downloads by week',
+  },
+  fr: {
+    stars: 'Nombre d’étoiles sur GitHub',
+    downloads: 'Nombre de téléchargements par semaine',
+  },
+}
+
 function ProjectTemplate({
   github,
   npm,
@@ -232,6 +244,8 @@ function ProjectTemplate({
   logo,
   stats = true,
 }) {
+  const langKey = useLangKey()
+  const t = locales[langKey]
   const [data, setData] = React.useState(null)
   React.useEffect(() => {
     if (!stats) return
@@ -250,7 +264,7 @@ function ProjectTemplate({
   }, [stats, npm, github])
 
   const stars = stats && (
-    <ShineTag key="stars" title="Number of stars on GitHub">
+    <ShineTag key="stars" title={t.stars}>
       ★{' '}
       {data
         ? `${humanNumber(Math.floor(data[0].stargazers_count / 100) * 100)}+`
@@ -259,7 +273,7 @@ function ProjectTemplate({
   )
 
   const downloads = stats && (
-    <ShineTag key="downloads" title="Number of downloads last week">
+    <ShineTag key="downloads" title={t.downloads}>
       ↓{' '}
       {data
         ? `${humanNumber(Math.floor(data[1].downloads / 1000) * 1000)}+`
