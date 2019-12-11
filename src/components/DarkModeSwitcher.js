@@ -23,6 +23,7 @@ const Switcher = styled.button`
   transition: all 0.2s linear;
   border: 0;
   opacity: 0;
+  cursor: pointer;
 
   &.ready {
     opacity: 1;
@@ -68,7 +69,6 @@ const Switcher = styled.button`
     height: 20;
     clip-path: circle(50% at 50% 50%);
     background-color: white;
-    cursor: pointer;
     border-radius: 50%;
     border: 1px solid transparent;
     transition: all 0.2s linear;
