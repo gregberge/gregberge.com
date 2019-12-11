@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { th } from '@xstyled/styled-components'
+import styled, { th, up, css } from '@xstyled/styled-components'
 
 const StyledBurger = styled.button`
   display: flex;
@@ -46,6 +46,13 @@ const StyledBurger = styled.button`
       }
     }
   }
+
+  ${up(
+    'md',
+    css`
+      display: none;
+    `,
+  )}
 `
 
 export const Burger = React.forwardRef((props, ref) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css, up, useUp } from '@xstyled/styled-components'
+import styled, { css, up } from '@xstyled/styled-components'
 import { useDialogState, Dialog, DialogDisclosure } from 'reakit/Dialog'
 import { Container } from './Container'
 import { Burger } from './Burger'
@@ -48,6 +48,8 @@ export const NavbarBrand = styled.h1`
 `
 
 export const NavbarSecondary = styled.div`
+  display: none;
+
   ${up(
     'md',
     css`
@@ -168,21 +170,19 @@ function MobileMenuDisclosure(props) {
 
 export function Navbar({ children }) {
   const dialog = useDialogState({ unstable_animated: true, visible: false })
-  const md = useUp('md')
   const childrenArray = React.Children.toArray(children)
   const secondary = childrenArray.find(child => child.type === NavbarSecondary)
-  const others = childrenArray.filter(child => child !== secondary)
   return (
     <Nav>
-      <MobileMenu {...dialog}>{md ? null : secondary}</MobileMenu>
+      <MobileMenu {...dialog}>{secondary.props.children}</MobileMenu>
       <Container
         maxWidth="container-lg"
         display="flex"
         alignItems="center"
         justifyContent={{ xs: 'space-between', md: 'flex-start' }}
       >
-        {md ? children : others}
-        {!md && <MobileMenuDisclosure {...dialog} />}
+        {children}
+        <MobileMenuDisclosure {...dialog} />
       </Container>
     </Nav>
   )
