@@ -33,16 +33,17 @@ export const NavbarBrandLink = styled.a`
   flex: 0 0 auto;
   cursor: pointer;
   transition: base;
+  color: lighter;
 
   &:hover,
   &:focus {
     color: accent;
+    outline: none;
   }
 `
 
 export const NavbarBrand = styled.h1`
   font-size: 20;
-  color: lighter;
   font-weight: 500;
   margin: 0;
 `
@@ -72,6 +73,7 @@ export const NavbarLink = styled.a`
   &:focus,
   &:hover {
     color: accent;
+    outline: none;
   }
 
   ${up(

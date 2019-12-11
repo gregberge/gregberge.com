@@ -20,7 +20,9 @@ const SocialLink = styled.a`
   padding: 0 2;
   transition: base;
 
-  &:hover {
+  &:hover,
+  &:focus {
+    outline: none;
     color: accent;
   }
 `

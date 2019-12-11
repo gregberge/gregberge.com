@@ -1,4 +1,4 @@
-import { createGlobalStyle } from '@xstyled/styled-components'
+import { createGlobalStyle, th } from '@xstyled/styled-components'
 import { normalize } from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
@@ -24,6 +24,10 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+  }
+
+  *:focus {
+    outline-color: ${th.color('accent')};
   }
 
   button {

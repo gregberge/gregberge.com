@@ -158,9 +158,18 @@ const Article = styled.article`
     border-bottom: 1px dotted;
     border-bottom-color: lighter;
 
+    * {
+      transition: base;
+    }
+
     &:hover {
       color: accent;
       border-bottom-color: accent;
+
+      * {
+        color: accent;
+        border-bottom-color: accent;
+      }
     }
   }
 

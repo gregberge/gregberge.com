@@ -57,13 +57,13 @@ const theme = {
 
     modes: {
       light: {
-        lighter: '#000C39',
+        lighter: '#100F4D',
         light950: '#F6F6F6',
-        light900: '#EEEEEE',
+        light900: '#EFEFF5',
         light800: '#F5F5F5',
-        light700: '#E7EBF1',
-        light500: '#D2D5DA',
-        light400: '#767EA3',
+        light700: '#E6E8F5',
+        light500: '#D8D8E5',
+        light400: '#70789C',
         light300: '#535988',
         light200: '#445B8D',
         light100: '#363B65',
