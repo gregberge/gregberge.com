@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { AppLayout } from '../containers/AppLayout'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { PageContainer } from '../components/Container'
 import { LatestArticles } from '../containers/LatestArticles'
@@ -8,7 +7,7 @@ import { Seo } from '../containers/Seo'
 
 export default function Blog({ data }) {
   return (
-    <AppLayout>
+    <>
       <Seo title="Greg Bergé — Blog" />
       <PageContainer>
         <SectionTitle>Blog</SectionTitle>
@@ -18,7 +17,7 @@ export default function Blog({ data }) {
         </SectionDescription>
         <LatestArticles edges={data.allMdx.edges} />
       </PageContainer>
-    </AppLayout>
+    </>
   )
 }
 

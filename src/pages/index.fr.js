@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { AppLayout } from '../containers/AppLayout'
 import { SectionTitle } from '../components/Section'
 import { Container } from '../components/Container'
 import { Hero, HeroIntro, HeroTitle, HeroTeaser } from '../containers/Hero'
@@ -15,7 +14,7 @@ export default function IndexPage({ data }) {
     return frEdge || enEdge
   })
   return (
-    <AppLayout langKey="fr">
+    <>
       <Seo />
       <Hero>
         <HeroIntro>Bonjour, je m’appelle</HeroIntro>
@@ -34,7 +33,7 @@ export default function IndexPage({ data }) {
         <SectionTitle forwardedAs="h2">Blog</SectionTitle>
         <LatestArticles edges={edges} />
       </Container>
-    </AppLayout>
+    </>
   )
 }
 

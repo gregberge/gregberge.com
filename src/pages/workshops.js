@@ -8,7 +8,6 @@ import styled, {
   Box,
   useColorMode,
 } from '@xstyled/styled-components'
-import { AppLayout } from '../containers/AppLayout'
 import { Seo } from '../containers/Seo'
 import { ReviewCard } from '../components/ReviewCard'
 import { SectionTitle, SectionDescription } from '../components/Section'
@@ -183,7 +182,7 @@ export default function Workshops() {
   `)
 
   return (
-    <AppLayout>
+    <>
       <Seo title="React Hooks Workshop by Greg Bergé" />
       <PageContainer>
         <SectionTitle>Workshops</SectionTitle>
@@ -305,6 +304,6 @@ export default function Workshops() {
           </CardBody>
         </Card>
       </PageContainer>
-    </AppLayout>
+    </>
   )
 }

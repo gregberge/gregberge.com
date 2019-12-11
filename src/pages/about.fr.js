@@ -2,7 +2,6 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { Container } from '../components/Container'
-import { AppLayout } from '../containers/AppLayout'
 import { I18nLink } from '../components/I18nContext'
 import { Seo } from '../containers/Seo'
 import { AboutContainer, AboutText, AboutImage } from '../containers/About'
@@ -20,7 +19,7 @@ export default function AboutPage() {
     }
   `)
   return (
-    <AppLayout langKey="fr">
+    <>
       <Seo title="A propos de Greg Bergé" />
       <AboutContainer>
         <Container>
@@ -84,6 +83,6 @@ export default function AboutPage() {
           </p>
         </AboutText>
       </AboutContainer>
-    </AppLayout>
+    </>
   )
 }

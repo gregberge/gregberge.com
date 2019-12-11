@@ -4,7 +4,6 @@ import { ProjectsPageTemplate } from '../containers/Projects'
 export default function ProjectsPage() {
   return (
     <ProjectsPageTemplate
-      langKey="fr"
       title="Projets"
       intro={
         <>

@@ -13,7 +13,7 @@ import { AppNavbar } from './AppNavbar'
 import { AppFooter } from './AppFooter'
 import { Newsletter } from './Newsletter'
 
-export function AppLayout({ children, langKey = 'en' }) {
+export function AppLayout({ children, langKey }) {
   return (
     <I18nProvider langKey={langKey}>
       <ThemeInitializer>

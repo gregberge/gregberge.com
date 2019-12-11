@@ -1,6 +1,5 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { AppLayout } from '../containers/AppLayout'
 import { SectionTitle } from '../components/Section'
 import { Container } from '../components/Container'
 import { Hero, HeroIntro, HeroTitle, HeroTeaser } from '../containers/Hero'
@@ -9,7 +8,7 @@ import { Seo } from '../containers/Seo'
 
 export default function IndexPage({ data }) {
   return (
-    <AppLayout>
+    <>
       <Hero>
         <Seo />
         <HeroIntro>Hi, my name is</HeroIntro>
@@ -27,7 +26,7 @@ export default function IndexPage({ data }) {
         <SectionTitle forwardedAs="h2">Blog</SectionTitle>
         <LatestArticles edges={data.allMdx.edges} />
       </Container>
-    </AppLayout>
+    </>
   )
 }
 

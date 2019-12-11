@@ -10,7 +10,6 @@ import Img from 'gatsby-image'
 import { useStaticQuery, graphql } from 'gatsby'
 import humanNumber from 'human-number'
 import { FaGithub } from 'react-icons/fa'
-import { AppLayout } from './AppLayout'
 import { Seo } from './Seo'
 import { SectionTitle, SectionDescription } from '../components/Section'
 import { useLangKey } from '../components/I18nContext'
@@ -419,7 +418,7 @@ function Projects({ data, projects }) {
   )
 }
 
-export function ProjectsPageTemplate({ title, intro, projects, langKey }) {
+export function ProjectsPageTemplate({ title, intro, projects }) {
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { relativePath: { glob: "projects/logo-*" } }) {
@@ -437,13 +436,13 @@ export function ProjectsPageTemplate({ title, intro, projects, langKey }) {
     }
   `)
   return (
-    <AppLayout langKey={langKey}>
+    <>
       <Seo title={`Greg Bergé — ${title}`} />
       <PageContainer>
         <SectionTitle>{title}</SectionTitle>
         <SectionDescription>{intro}</SectionDescription>
         <Projects data={data} projects={projects} />
       </PageContainer>
-    </AppLayout>
+    </>
   )
 }
