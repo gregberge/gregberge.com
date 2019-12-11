@@ -39,7 +39,7 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
-    box-shadow: ${th.color('shadow')} 0 0 0 ${th.space(1)};
+    box-shadow: glow;
     border-color: accent;
   }
 `

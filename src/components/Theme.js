@@ -22,6 +22,7 @@ const theme = {
     'container-lg': 1200,
   },
   shadows: {
+    glow: p => `${th.color('shadow')(p)} 0 0 0 ${th.space(1)(p)}`,
     soft: p => `0 ${th.px(2)(p)} ${th.px(6)(p)} 0 rgba(0, 0, 0, 0.1)`,
   },
   colors: {

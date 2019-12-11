@@ -3,6 +3,7 @@ import styled, { css, up } from '@xstyled/styled-components'
 import { useDialogState, Dialog, DialogDisclosure } from 'reakit/Dialog'
 import { Container } from './Container'
 import { Burger } from './Burger'
+import { DarkModeSwitcher } from './DarkModeSwitcher'
 
 export const Nav = styled.nav`
   padding: 3 3;
@@ -80,7 +81,7 @@ export const NavbarLink = styled.a`
     'md',
     css`
       margin: 0 3;
-      font-size: 16;
+      font-size: 18;
     `,
   )}
 `
@@ -184,6 +185,7 @@ export function Navbar({ children }) {
         justifyContent={{ xs: 'space-between', md: 'flex-start' }}
       >
         {children}
+        <DarkModeSwitcher />
         <MobileMenuDisclosure {...dialog} />
       </Container>
     </Nav>

@@ -119,9 +119,8 @@ function Clients({ clientLogos }) {
           edge.node.relativePath.includes(client.slug),
         )
         return (
-          <Box col="auto" p={2}>
+          <Box key={client.slug} col="auto" p={2}>
             <ClientLogoImg
-              key={client.slug}
               className={`mode-${colorMode}`}
               alt={client.name}
               fixed={logo.node.childImageSharp.fixed}
