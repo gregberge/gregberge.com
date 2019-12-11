@@ -59,7 +59,7 @@ export function AppFooter() {
   const langKey = useLangKey()
   const t = locales[langKey]
   return (
-    <Container display="flex" mt={4} pb={4}>
+    <Container display="flex" alignItems="center" mt={4} pb={4}>
       <Copyright>Greg Bergé © {currentYear}</Copyright>
       <Socials>
         <Location>
