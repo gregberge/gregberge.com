@@ -40,6 +40,7 @@
     "react-markdown": "^4.2.2",
     "react-scroll": "^1.7.14",
     "react-share": "^3.0.1",
+    "reakit": "^1.0.0-beta.13",
     "styled-components": "^4.4.1"
   },
   "devDependencies": {

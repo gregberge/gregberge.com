@@ -9,5 +9,5 @@ export const Container = styled.box`
 `
 
 export function PageContainer(props) {
-  return <Container pt={8} pb={5} {...props} />
+  return <Container pt={{ xs: 120, md: 8 }} pb={5} {...props} />
 }

@@ -2380,6 +2380,11 @@ body-parser@1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
+body-scroll-lock@^2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/body-scroll-lock/-/body-scroll-lock-2.6.4.tgz#567abc60ef4d656a79156781771398ef40462e94"
+  integrity sha512-NP08WsovlmxEoZP9pdlqrE+AhNaivlTrz9a0FF37BQsnOrpN48eNqivKkE7SYpM9N+YIPjsdVzfLAUQDBm6OQw==
+
 bonjour@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bonjour/-/bonjour-3.5.0.tgz#8e890a183d8ee9a2393b3844c691a42bcf7bc9f5"
@@ -10073,6 +10078,11 @@ polished@^3.4.2:
   dependencies:
     "@babel/runtime" "^7.6.3"
 
+popper.js@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
+  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+
 portfinder@^1.0.25:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.25.tgz#254fd337ffba869f4b9d37edc298059cb4d35eca"
@@ -11066,6 +11076,26 @@ readdirp@~3.2.0:
   integrity sha512-crk4Qu3pmXwgxdSgGhgA/eXiJAPQiX4GMOZZMXnqKxHX7TaoL+3gQVo/WeuAiogr07DpnfjIMpXXa+PAIvwPGQ==
   dependencies:
     picomatch "^2.0.4"
+
+reakit-system@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/reakit-system/-/reakit-system-0.7.1.tgz#ab794823ed1dce5aa7269fcca5a193097950f8b1"
+  integrity sha512-a7hGv5hVe2yjSmy9EgCe6wgeBC/EPoLXxp9XFuP2VWmFw8ufJ4K7hvY/OWRgqxZHgoEoUWbO6fxYYEfZ7YfoPg==
+
+reakit-utils@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/reakit-utils/-/reakit-utils-0.7.2.tgz#5e19016f4ad2bf07f70d8c38d3f9a44dbf7f3e87"
+  integrity sha512-cHG5QjimeYQEWJjmrEK+p2YwaOiqbwkbhzZlqQHOfYj5h7B/MrpyssVYlDBSQozEXM9pZwtUFGQSI2bG9jok9A==
+
+reakit@^1.0.0-beta.13:
+  version "1.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/reakit/-/reakit-1.0.0-beta.13.tgz#f29cb481250a628782e745f44b014a9a7fe3c0be"
+  integrity sha512-lQ50v2801aBi6+8pZ3iD09U7URYNGEo99vrF+NSPlDzYWofbiIAiEZ2hpTnNtc/8OXZusrkrVW1d8rsmJGNWhw==
+  dependencies:
+    body-scroll-lock "^2.6.4"
+    popper.js "^1.16.0"
+    reakit-system "^0.7.1"
+    reakit-utils "^0.7.2"
 
 recursive-readdir@2.2.1:
   version "2.2.1"

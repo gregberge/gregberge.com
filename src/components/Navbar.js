@@ -1,10 +1,32 @@
 import React from 'react'
-import styled, { css, up } from '@xstyled/styled-components'
+import styled, { css, up, useUp } from '@xstyled/styled-components'
+import { useDialogState, Dialog, DialogDisclosure } from 'reakit/Dialog'
 import { Container } from './Container'
+import { Burger } from './Burger'
 
 export const Nav = styled.nav`
-  padding: 5 3;
+  padding: 3 3;
   margin: 0 auto;
+  position: fixed;
+  background-color: navbar-bg;
+  box-shadow: soft;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60;
+  z-index: 200;
+  backdrop-filter: blur(8px);
+
+  ${up(
+    'md',
+    css`
+      position: initial;
+      padding: 5 3;
+      background-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    `,
+  )}
 `
 
 export const NavbarBrandLink = styled.a`
@@ -26,8 +48,6 @@ export const NavbarBrand = styled.h1`
 `
 
 export const NavbarSecondary = styled.div`
-  display: none;
-
   ${up(
     'md',
     css`
@@ -41,8 +61,8 @@ export const NavbarSecondary = styled.div`
 
 export const NavbarLink = styled.a`
   display: block;
-  margin: 0 3;
-  font-size: 16;
+  margin: 3 3;
+  font-size: 20;
   font-weight: 500;
   color: lighter;
   transition: base;
@@ -51,18 +71,106 @@ export const NavbarLink = styled.a`
   &:hover {
     color: accent;
   }
+
+  ${up(
+    'md',
+    css`
+      margin: 0 3;
+      font-size: 16;
+    `,
+  )}
 `
 
+const MobileMenuContainer = styled.div`
+  position: fixed;
+  background-color: navbar-bg;
+  backdrop-filter: blur(8px);
+  top: 60;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 3 0;
+  overflow: auto;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-animated] {
+    transition: 300ms ease-out;
+    transition-property: opacity, transform;
+
+    &[data-animating='true'] {
+      opacity: 1;
+      transform: translateY(0);
+
+      &.hidden {
+        opacity: 0;
+        transform: translateX(-30vw);
+      }
+    }
+  }
+`
+
+function MobileMenu({ children, ...props }) {
+  const handleClick = event => {
+    if (event.target.tagName === 'A') {
+      props.hide()
+    }
+  }
+
+  return (
+    <Dialog
+      onClick={handleClick}
+      aria-label="Menu"
+      data-animated={props.unstable_animated}
+      data-animating={props.unstable_animating}
+      {...props}
+    >
+      {dialogProps => (
+        <MobileMenuContainer
+          {...dialogProps}
+          onTransitionEnd={event => {
+            if (
+              event.target &&
+              event.target.dataset &&
+              event.target.dataset.animated
+            ) {
+              dialogProps.onTransitionEnd(event)
+            }
+          }}
+        >
+          <Container height="100%" display="flex" flexDirection="column">
+            {children}
+          </Container>
+        </MobileMenuContainer>
+      )}
+    </Dialog>
+  )
+}
+
+function MobileMenuDisclosure(props) {
+  return <DialogDisclosure as={Burger} {...props} />
+}
+
 export function Navbar({ children }) {
+  const dialog = useDialogState({ unstable_animated: true })
+  const md = useUp('md')
+  const childrenArray = React.Children.toArray(children)
+  const secondary = childrenArray.find(child => child.type === NavbarSecondary)
+  const others = childrenArray.filter(child => child !== secondary)
   return (
     <Nav>
+      <MobileMenu {...dialog}>{md ? null : secondary}</MobileMenu>
       <Container
         maxWidth="container-lg"
         display="flex"
         alignItems="center"
         justifyContent={{ xs: 'space-between', md: 'flex-start' }}
       >
-        {children}
+        {md ? children : others}
+        {!md && <MobileMenuDisclosure {...dialog} />}
       </Container>
     </Nav>
   )

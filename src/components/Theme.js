@@ -21,6 +21,9 @@ const theme = {
     'container-base': 784,
     'container-lg': 1200,
   },
+  shadows: {
+    soft: p => `0 ${th.px(2)(p)} ${th.px(6)(p)} 0 rgba(0, 0, 0, 0.1)`,
+  },
   colors: {
     black: '#000',
     white: '#fff',
@@ -46,6 +49,7 @@ const theme = {
     light800: '#282E5E',
     light900: '#22264A',
     light950: '#1f2347',
+    'navbar-bg': p => transparentize(0.1, th.color('light900')(p)),
     shadow: p => transparentize(0.75, th.color('accent')(p)),
     'shadow-dark': p => transparentize(0.75, th.color('darker')(p)),
     darker: th.color('black'),
