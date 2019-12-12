@@ -7,39 +7,128 @@ export default function ProjectsPage() {
       title="Projets"
       intro={
         <>
-          L’Open Source est une vraie passion et un mode de pensée pour moi. Mes
-          outils sont utilisés par des <strong>millers de développeurs</strong>{' '}
-          dans le monde entier.
+          L’open source est une vraie passion et un mode de pensée. Mes outils
+          sont utilisés par des <strong>milliers de développeurs</strong> dans
+          le monde entier.
         </>
       }
       projects={{
         svgr: {
           label: 'Intégré dans create-react-app',
-          description: `SVGR transformes vos SVG en composants React. Vous pouvez l’utiliser via CLI, webpack, rollup, Node.js ou en ligne. Il est inclus dans create-react-app et cumule 2M de téléchargements par semaine.`,
+          description: (
+            <>
+              SVGR transforme les <strong>SVG en composants React</strong>. Il
+              s’utilise via{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/cli/">
+                CLI
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/webpack/">
+                webpack
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/rollup/">
+                rollup
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/node-api/">
+                Node.js
+              </a>{' '}
+              ou{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/playground/">
+                en ligne
+              </a>{' '}
+              et est{' '}
+              <a href="https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs">
+                inclus dans create-react-app
+              </a>
+              . SVGR cumule <strong>2M de téléchargements par semaine</strong>.
+            </>
+          ),
         },
         'loadable-components': {
           label: 'Recommandé par la core team React',
-          description: `Loadable Components est la solution de Code Splitting pour React compatible avec le Server Side Rendering. C’est la librairie de référence si vous n’utilisez pas de frameworks comme Next.js ou Gatsby.`,
+          description: (
+            <>
+              Loadable Components est la solution de{' '}
+              <strong>Code Splitting</strong> pour React compatible avec le{' '}
+              <strong>Server Side Rendering</strong>. C’est la{' '}
+              <strong>librairie de référence</strong> si on n’utilise pas de
+              frameworks tel que Next.js ou Gatsby.
+            </>
+          ),
         },
         xstyled: {
           label: 'Design System Toolkit',
-          description: `xstyled est une extension à styled-components et emotion. Il met le theming au coeur du langage CSS et fournis des utilitaires pour vous aider à créer un design system consistant.`,
+          description: (
+            <>
+              xstyled est une{' '}
+              <strong>
+                extension à{' '}
+                <a href="https://www.styled-components.com/">
+                  styled-components
+                </a>{' '}
+                et <a href="https://emotion.sh/">emotion</a>
+              </strong>
+              . Il met le theming au coeur du langage CSS et fournit des
+              utilitaires pour aider à la création d’un{' '}
+              <strong>design system consistant</strong>.
+            </>
+          ),
         },
         'smooth-ui': {
           label: 'React UI Library',
-          description: `Smooth UI est une librairie de composants simple et efficace pour React. Elle contient des composants accessibles et prêt à être utilisés. xstyled et Reakit sont les fondations de Smooth UI.`,
+          description: (
+            <>
+              Smooth UI est une <strong>librairie de composants</strong> simple
+              et efficace pour React. Elle contient des composants accessibles
+              et prêts à être utilisés.{' '}
+              <a href="https://www.smooth-code.com/open-source/xstyled/">
+                xstyled
+              </a>{' '}
+              et <a href="https://reakit.io">Reakit</a> sont les fondations de
+              Smooth UI.
+            </>
+          ),
         },
         'bundle-analyzer': {
           label: 'GitHub App',
-          description: `Bundle Analyzer est un service qui vous permet de monitorer et de garantir les performances votre bundle webpack au cours du temps. Il est disponible gratuitement en tant que GitHub App.`,
+          description: (
+            <>
+              Bundle Analyzer est un service qui permet de{' '}
+              <strong>
+                monitorer et de garantir les performances du bundle webpack
+              </strong>{' '}
+              au cours du temps. Il est disponible gratuitement en tant que{' '}
+              <strong>GitHub App</strong>.
+            </>
+          ),
         },
         'jest-puppeteer': {
           label: 'Preset Jest officielle',
-          description: `Jest Puppeteer lie Jest et Puppeteer pour proposer une solution de end-to-end testing clef en main. Il proposent également des utilitaires pour garantir les bonnes pratiques en manière de test.`,
+          description: (
+            <>
+              Jest Puppeteer lie{' '}
+              <strong>
+                <a href="https://jestjs.io/">Jest</a> et{' '}
+                <a href="https://github.com/puppeteer/puppeteer">Puppeteer</a>
+              </strong>{' '}
+              pour proposer une solution de <strong>end-to-end testing</strong>{' '}
+              clef en main. A l’aide d’utilitaires, Jest Puppeteer garantit les{' '}
+              <strong>bonnes pratiques</strong>
+              en matière de test.
+            </>
+          ),
         },
         shipit: {
           label: 'Outil de déploiement universel',
-          description: `Shipit est une alternative à Capistrano ou à d’autre outils similaires. Il expose une syntaxe simple en JavaScript pour déployer du code sur un serveur.`,
+          description: (
+            <>
+              Shipit est un outil d’<strong>automatisation</strong> et de{' '}
+              <strong>déploiment</strong>. Une API simple en JavaScript permet
+              de déployer du code sur un serveur.
+            </>
+          ),
         },
       }}
     />

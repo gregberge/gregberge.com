@@ -29,17 +29,17 @@ const Star = props => (
 This solution is quite viable. You can use [SVGO](https://jakearchibald.github.io/svgomg/) to clean up your SVG and [file-loader](https://github.com/webpack-contrib/file-loader) if you use webpack. However, it has some limitations:
 
 - An HTTP request by SVG
-- Can not stylize SVG (especially color)
+- Cannot style SVG (especially color)
 
 ### 2. Use JSX
 
 This solution consists of integrating the SVG directly into the React component in JSX. It has several advantages:
 
 - No more requests, it's bundled with your JS
-- We can stylize each part of the SVG
+- We can style each part of the SVG
 - "currentColor" allows us to directly inherit the color of the text
 
-Integrating your SVG directly into JSX is the preferred solution for easy maintenance and total control. However, it requires a tricky operation, moving from an SVG file to a React component. At first glance, it's a copy-and-paste, but the JSX is not exactly HTML and it's very tedious when you have a lot of icons.
+Integrating your SVG directly into JSX is the preferred solution for easy maintenance and total control. However, it requires a tricky operation, moving from a SVG file to a React component. At first glance, it's a copy-and-paste, but the JSX is not exactly HTML and it's very tedious when you have a lot of icons.
 
 ## Switch from SVG to React component
 
@@ -47,7 +47,7 @@ Integrating your SVG directly into JSX is the preferred solution for easy mainte
   <img src="./images/svgr-logo.png" alt="SVGR logo" />
 </div>
 
-This is where [SVGR](https://github.com/smooth-code/svgr) comes in, allowing you to automate the generation of React components from your SVGs. Let's take a concrete example from an SVG generated via [Sketch](https://www.sketch.com/):
+This is where [SVGR](https://github.com/smooth-code/svgr) comes in handy, allowing you to automate the generation of React components from your SVGs. Let's take a concrete example from a SVG generated via [Sketch](https://www.sketch.com/):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -96,7 +96,7 @@ Pretty cool, no 😏?
 
 ## Integrate SVGR into my project
 
-There are several ways to integrate SVGR into your project. It's up to you to choose the one that best fits your work habits.
+There are several ways to integrate SVGR in your project. It's up to you to choose the one that best fits your work habits.
 
 ### 1. Command line usage
 
@@ -117,7 +117,7 @@ A good way to do this is to add a script to your `package.json` to automate the 
 }
 ```
 
-The following script transforms each SVG in the "svg /" folder by composing React in "components/".
+The following script transforms each SVG in the "svg/" folder by composing React in "components/".
 
 To run it: `npm run build:svg`
 
@@ -198,7 +198,7 @@ svgr(svgCode, { prettier: false, componentName: 'MyComponent' }).then(
 
 ## Go further with SVGR
 
-SVGR allows you to go very far in the transformation. A lot of options are available: optimization of SVG, formatting code, adding a title ... I will not say all but you can find them in [the documentation](https://www.smooth-code.com/open-source/svgr/docs/getting-started/).
+SVGR allows you to go very far in the transformation. A lot of options are available: optimization of SVG, formatting code, adding a title ... I will not go into details but you can find them in [the documentation](https://www.smooth-code.com/open-source/svgr/docs/getting-started/).
 
 ## Transform your icons
 
@@ -210,22 +210,22 @@ It is possible to obtain the same behavior with SVGR, here is an example:
 svgr --icon --replace-attr-value "#000000=currentColor" my-icon.svg
 ```
 
-On exploite deux options de SVGR :
+We use two options:
 
-- `--icon` : spécifie "width" et "height" à "1em"
-- `--replace-attr-value "#000000=currentColor"` : remplace "#000000" par "currentColor" dans tous les attributs du SVG
+- `--icon` : set "width" and "height" to "1em"
+- `--replace-attr-value "#000000=currentColor"` : replaces "#000000" by "currentColor" in all SVG attributes
 
 With these two options you will get the same behavior as a classic "font-icon"!
 
 ## How SVGR works?
 
-SVGR converts SVG to JSX. To achieve this, he delegates each part of the work to specialized tools:
+SVGR converts SVG to JSX. To achieve this, it delegates each part of the work to specialized tools:
 
 - [SVGO](https://github.com/svg/svgo) for optimization
 - [Babel](https://babeljs.io/) for transformation
 - [Prettier](https://prettier.io/) for formatting
 
-Let's linger a little on the most delicate phase, the transformation. It allows to pass from an SVG / HTML code to JSX understood by React. Where most libraries go through a series of regular expressions, Babel allows us to apply transformations directly to the HTML AST, namely the DOM. In other words, it breaks down the structure of the code and applies the transformation.
+Let's linger a little on the most delicate phase, the transformation. It allows to pass from a SVG / HTML code to JSX understood by React. Where most libraries go through a series of regular expressions, Babel allows us to apply transformations directly to the HTML AST, namely the DOM. In other words, it breaks down the structure of the code and applies the transformation.
 
 This allows SVGR to apply complicated transformations such as "--replace-attr-value" without any edge effects!
 
@@ -275,4 +275,4 @@ This transformation replaces the value of an attribute without any edge effects.
 
 For the more curious you can find the code of the project [SVGR on GitHub](http://github.com/smooth-code/svgr/).
 
-I hope that SVGR will save you as much time as I earn every day!
+I hope that SVGR saves you as much time as it does for me!

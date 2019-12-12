@@ -18,8 +18,8 @@ export default function IndexPage({ data }) {
       <PageContainer>
         <SectionTitle>Blog</SectionTitle>
         <SectionDescription>
-          J’écris sur React, JavaScript et comment résoudre des problèmes réels.
-          Bonne lecture !
+          J’écris sur React, JavaScript et partage avec vous les solutions aux
+          problèmes que je rencontre. Bonne lecture !
         </SectionDescription>
         <LatestArticles edges={edges} />
       </PageContainer>

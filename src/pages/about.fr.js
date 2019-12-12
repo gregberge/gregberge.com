@@ -32,24 +32,24 @@ export default function AboutPage() {
         <AboutImage img={data.photo.childImageSharp} />
         <AboutText>
           <p>
-            A 12 ans, j’ai créé mon premier site de jeux, quelques moi plus tard
-            il était racheté par une société; depuis, je n’ai jamais arrêté. A
-            19 ans, je suis devenu <strong>Ingénieur R&D</strong> au journal{' '}
-            <a href="https://www.lemonde.fr">Le Monde</a>, quelques années plus
-            tard j’étais tech lead du projet de CMS du groupe.
+            A 12 ans, je crée mon premier site de jeux, quelques mois plus tard
+            il est racheté par une société. Je n’ai jamais arrêté depuis ! A 19
+            ans, je deviens <strong>Ingénieur R&D</strong> au journal{' '}
+            <a href="https://www.lemonde.fr">Le Monde</a> et fini par être tech
+            lead sur le projet de CMS du groupe.
           </p>
 
           <p>
-            J’ai rejoint l’équipe fondatrice de{' '}
+            Je rejoins ensuite l’équipe fondatrice de{' '}
             <a href="https://www.doctolib.fr">Doctolib</a> pour créer{' '}
             <strong>
-              la plateforme de prise de rendez-vous médical leader en Europe
+              la plateforme de prise de rendez-vous médicaux leader en Europe
             </strong>
             .
           </p>
 
           <p>
-            En 2017, j’ai fondé <strong>Smooth Code</strong>, un studio de
+            En 2017, je fonde <strong>Smooth Code</strong>, un studio de
             développement pour aider des startups telles que{' '}
             <a href="http://www.payfit.com">Payfit</a>,{' '}
             <a href="https://www.scaleway.com">Scaleway</a> ou{' '}
@@ -64,7 +64,7 @@ export default function AboutPage() {
             le partage avec les autres. Que ce soit derrière un ordinateur ou en
             tant que speaker à des conférences, j’aime partager.{' '}
             <I18nLink to="/projects">Mes projets</I18nLink> sont utilisés par
-            des milleurs de développeurs à travers le monde.
+            des milliers de développeurs à travers le monde.
           </p>
 
           <p>

@@ -69,9 +69,9 @@ const locales = {
     ),
     firstName: 'Prénom',
     teaser:
-      'Recevez des emails sur l’open source, le business, comprendre et apprendre.',
+      'Retrouvez toute l’actualité open source, business, workshops dans ma newsletter.',
     submit: 'Envoyer',
-    submitting: 'Envoie en cours...',
+    submitting: 'Envoi en cours...',
   },
 }
 

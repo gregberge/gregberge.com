@@ -90,4 +90,15 @@ export const CardTitle = styled.h3`
 export const CardText = styled.pBox`
   margin: 0;
   text-align: justify;
+
+  a {
+    transition: base;
+    border-bottom: 1px dotted;
+    border-bottom-color: currentColor;
+
+    &:hover {
+      color: accent;
+      border-bottom-color: accent;
+    }
+  }
 `
