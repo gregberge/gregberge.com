@@ -28,6 +28,18 @@ const Switcher = styled.button`
   &.ready {
     opacity: 1;
     transition: all 0.2s linear;
+
+    .star {
+      transition: all 0.2s linear;
+    }
+
+    .round-btn {
+      transition: all 0.2s linear;
+
+      .moon-mode {
+        transition: all 0.1s linear;
+      }
+    }
   }
 
   &:focus {
@@ -40,7 +52,6 @@ const Switcher = styled.button`
     position: absolute;
     background-color: white;
     clip-path: circle(45%);
-    transition: all 0.2s linear;
   }
 
   .star.star1 {
@@ -72,19 +83,17 @@ const Switcher = styled.button`
     background-color: white;
     border-radius: 50%;
     border: 1px solid transparent;
-    transition: all 0.2s linear;
-  }
 
-  .round-btn .moon-mode {
-    width: 18;
-    height: 18;
-    border-radius: 50%;
-    background: #00134c;
-    position: absolute;
-    left: -4;
-    top: 0;
-    opacity: 0;
-    transition: all 0.1s linear;
+    .moon-mode {
+      width: 18;
+      height: 18;
+      border-radius: 50%;
+      background: #00134c;
+      position: absolute;
+      left: -4;
+      top: 0;
+      opacity: 0;
+    }
   }
 
   &.dark {
