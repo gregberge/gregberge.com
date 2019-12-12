@@ -10,6 +10,7 @@
     "final-form": "^4.18.6",
     "gatsby": "^2.18.4",
     "gatsby-image": "^2.2.34",
+    "gatsby-plugin-google-analytics": "^2.1.31",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-i18n": "^1.0.1",
     "gatsby-plugin-manifest": "^2.2.30",

@@ -111,5 +111,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-remove-serviceworker`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-154496255-1',
+        anonymize: true,
+      },
+    },
   ],
 }
