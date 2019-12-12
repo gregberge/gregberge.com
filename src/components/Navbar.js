@@ -168,7 +168,7 @@ function MobileMenu({ children, ...props }) {
 }
 
 function MobileMenuDisclosure(props) {
-  return <DialogDisclosure as={Burger} {...props} />
+  return <DialogDisclosure aria-label="Toggle menu" as={Burger} {...props} />
 }
 
 export function Navbar({ children }) {

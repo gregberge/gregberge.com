@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     color: text;
     line-height: 1.4;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
   body {

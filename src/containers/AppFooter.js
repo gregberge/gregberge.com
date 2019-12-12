@@ -16,11 +16,16 @@ const Copyright = styled.div`
 const Socials = styled.div`
   margin-left: auto;
   margin-right: -2;
+  display: flex;
 `
 
 const SocialLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44;
+  width: 44;
   color: lighter;
-  padding: 0 2;
   transition: base;
 
   &:hover,
