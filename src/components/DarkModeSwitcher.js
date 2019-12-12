@@ -144,7 +144,9 @@ export function DarkModeSwitcher() {
   const [mode, setMode] = useColorMode()
   const [ready, setReady] = React.useState(false)
   React.useEffect(() => {
-    setReady(true)
+    setTimeout(() => {
+      setReady(true)
+    }, 10)
   }, [])
   return (
     <Switcher
