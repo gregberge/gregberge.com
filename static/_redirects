@@ -1,4 +1,4 @@
-http://gregberge.netlify.com/*    http://gregberge.com/:splat 301!
+https://gregberge.netlify.com/*    https://gregberge.com/:splat 301!
 
 /wp-login                         https://www.youtube.com/watch?v=CkvUAl7Y4mw
 /wp-login.php                     https://www.youtube.com/watch?v=CkvUAl7Y4mw
