@@ -20,13 +20,14 @@ const Switcher = styled.button`
   align-items: center;
   padding: 0 6rpx;
   background-color: #a6b0f3;
-  transition: all 0.2s linear;
   border: 0;
   opacity: 0;
   cursor: pointer;
+  transition: opacity 200ms;
 
   &.ready {
     opacity: 1;
+    transition: all 0.2s linear;
   }
 
   &:focus {
