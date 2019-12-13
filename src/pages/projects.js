@@ -15,31 +15,116 @@ export default function ProjectsPage() {
       projects={{
         svgr: {
           label: 'Integrated in create-react-app',
-          description: `SVGR transforms SVG into React Components. You can use it with CLI, webpack, rollup, Node.js or even online. It is included in create-react-app and has 2M downloads by week.`,
+          description: (
+            <>
+              SVGR transforms SVG into React Components. It is available as{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/cli/">
+                CLI
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/webpack/">
+                webpack
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/rollup/">
+                webpack
+              </a>
+              ,{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/docs/node-api/">
+                Node.js
+              </a>{' '}
+              or even{' '}
+              <a href="https://www.smooth-code.com/open-source/svgr/playground/">
+                online
+              </a>
+              . It is included in{' '}
+              <a href="https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs">
+                create-react-app
+              </a>{' '}
+              and has <strong>2M downloads by week</strong>.
+            </>
+          ),
         },
         'loadable-components': {
           label: 'Recommended by React Team',
-          description: `Loadable Components is the Code Splitting solution for React compatible with Server Side Rendering. It is the official library if you don't use a framework like Next.js or Gatsby.`,
+          description: (
+            <>
+              Loadable Components is the <strong>Code Splitting</strong>{' '}
+              solution for React compatible with{' '}
+              <strong>Server Side Rendering</strong>. It is{' '}
+              <strong>the reference library</strong> if you don&apos;t use a
+              framework like Next.js or Gatsby.
+            </>
+          ),
         },
         xstyled: {
           label: 'Design System Toolkit',
-          description: `xstyled is an extension to styled-components and emotion. It brings theming into CSS language and provides useful utilities to help you build a consistent design system.`,
+          description: (
+            <>
+              xstyled is an{' '}
+              <strong>
+                extension to{' '}
+                <a href="https://www.styled-components.com/">
+                  styled-components
+                </a>{' '}
+                and <a href="https://emotion.sh/">emotion</a>
+              </strong>
+              . It brings theming into CSS language and provides useful
+              utilities to help building a{' '}
+              <strong>consistent design system</strong>.
+            </>
+          ),
         },
         'smooth-ui': {
           label: 'React UI Library',
-          description: `Smooth UI is a simple and powerful UI library for React. It provides accessible and ready-to-use components. xstyled and Reakit are the foundations of Smooth UI.`,
+          description: (
+            <>
+              Smooth UI is a simple and powerful{' '}
+              <strong>UI library for React</strong>. It provides accessible and
+              ready-to-use components.{' '}
+              <a href="https://www.smooth-code.com/open-source/xstyled/">
+                xstyled
+              </a>{' '}
+              and <a href="https://reakit.io">Reakit</a> are the foundations of
+              Smooth UI.
+            </>
+          ),
         },
         'bundle-analyzer': {
           label: 'GitHub App',
-          description: `Bundle Analyzer is a service that helps you monitor and keep your webpack bundle optimized over time. It is available as a public and free GitHub App.`,
+          description: (
+            <>
+              Bundle Analyzer is a service that helps{' '}
+              <strong>monitoring and keeping a webpack bundle optimized</strong>{' '}
+              over time. It is available as a public and free{' '}
+              <strong>GitHub App</strong>.
+            </>
+          ),
         },
         'jest-puppeteer': {
           label: 'Official Jest Preset',
-          description: `Jest Puppeteer unifies Jest and Puppeteer to provide a ready-to-use solution for end-to-end testing. It also exposes lots of utilities to encourage good testing practices.`,
+          description: (
+            <>
+              Jest Puppeteer unifies{' '}
+              <strong>
+                <a href="https://jestjs.io/">Jest</a> and
+                <a href="https://github.com/puppeteer/puppeteer">Puppeteer</a>
+              </strong>{' '}
+              to provide a ready-to-use solution for{' '}
+              <strong>end-to-end testing</strong>. It also exposes lots of
+              utilities to encourage <strong>good testing practices</strong>.
+            </>
+          ),
         },
         shipit: {
           label: 'Universal automation and deployment tool',
-          description: `Shipit provides a good alternative to Capistrano or other build tools. It provides a simple syntax to deploy code on a remote server.`,
+          description: (
+            <>
+              Shipit is an universal <strong>automation</strong> and{' '}
+              <strong>deployment</strong> tool. It provides a simple syntax to
+              deploy code on a remote server.
+            </>
+          ),
         },
       }}
     />

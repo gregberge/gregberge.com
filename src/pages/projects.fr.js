@@ -125,7 +125,7 @@ export default function ProjectsPage() {
           description: (
             <>
               Shipit est un outil d’<strong>automatisation</strong> et de{' '}
-              <strong>déploiment</strong>. Une API simple en JavaScript permet
+              <strong>déploiement</strong>. Une API simple en JavaScript permet
               de déployer du code sur un serveur.
             </>
           ),
