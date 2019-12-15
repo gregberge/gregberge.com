@@ -58,6 +58,7 @@ export function Seo({
                 name="image"
                 content={`${siteMetadata.canonicalUrl}${image}`}
               />
+              <link rel="canonical" href={url} />
 
               {/* OpenGraph tags */}
               <meta property="og:url" content={url} />

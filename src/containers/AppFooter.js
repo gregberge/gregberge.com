@@ -5,7 +5,7 @@ import styled, { Box } from '@xstyled/styled-components'
 import { FaTwitter, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import { Location } from '@reach/router'
 import { Container } from '../components/Container'
-import { useLangKey } from '../components/I18nContext'
+import { useLangKey, toEnglish, toFrench } from '../components/I18nContext'
 
 const Copyright = styled.div`
   color: light400;
@@ -50,14 +50,6 @@ const locales = {
     linkedin: 'Mon profil LinkedIn',
     email: 'Écrivez-moi',
   },
-}
-
-function toEnglish(location) {
-  return location.pathname.replace(/^\/fr\//, '')
-}
-
-function toFrench(location) {
-  return `/fr${location.pathname}`
 }
 
 export function AppFooter() {

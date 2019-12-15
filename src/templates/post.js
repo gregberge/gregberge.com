@@ -1,11 +1,12 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import styled, { up, css, th } from '@xstyled/styled-components'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import Img from 'gatsby-image'
 import { MDXProvider } from '@mdx-js/react'
 import Markdown from 'react-markdown'
 import { Location } from '@reach/router'
+import { useLangKey } from '../components/I18nContext'
 import { PageContainer } from '../components/Container'
 import { Code } from '../components/Code'
 import { Share } from '../components/Share'
@@ -172,6 +173,12 @@ const Article = styled.article`
     }
   }
 
+  abbr {
+    cursor: help;
+    text-decoration: none;
+    border-bottom: 1px dotted currentColor;
+  }
+
   blockquote {
     margin: 6 3;
     text-align: center;
@@ -217,7 +224,33 @@ const Article = styled.article`
   )};
 `
 
+const Alternate = styled.div`
+  font-size: 0.8em;
+  border: 1px solid;
+  border-color: light500;
+  border-radius: 6;
+  padding: 2;
+  background-color: light800;
+`
+
+const langs = {
+  fr: 'Français',
+  en: 'English',
+}
+
+const locales = {
+  en: {
+    alternate: `This article is also available in:`,
+  },
+  fr: {
+    alternate: `Cet article est aussi disponible en :`,
+  },
+}
+
 export default function Post({ data }) {
+  const langKey = useLangKey()
+  const t = locales[langKey]
+  const { alternate } = data
   const { frontmatter, body } = data.mdx
 
   return (
@@ -245,6 +278,14 @@ export default function Post({ data }) {
                 {frontmatter.bannerCredit}
               </Markdown>
             </figure>
+            {alternate && (
+              <Alternate>
+                {t.alternate}{' '}
+                <Link to={alternate.fields.link}>
+                  {langs[alternate.fields.langKey]}
+                </Link>
+              </Alternate>
+            )}
             <Markdown>{frontmatter.description}</Markdown>
             <MDXRenderer>{body}</MDXRenderer>
           </Article>
@@ -263,7 +304,7 @@ export default function Post({ data }) {
 }
 
 export const pageQuery = graphql`
-  query($id: String!) {
+  query($id: String!, $slug: String!, $langKey: String!) {
     site {
       siteMetadata {
         canonicalUrl
@@ -291,6 +332,13 @@ export const pageQuery = graphql`
         }
         bannerCredit
         slug
+      }
+    }
+
+    alternate: mdx(fields: { slug: { eq: $slug }, langKey: { ne: $langKey } }) {
+      fields {
+        langKey
+        link
       }
     }
   }

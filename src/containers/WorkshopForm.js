@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { Box } from '@xstyled/styled-components'
 import { FORM_ERROR } from 'final-form'
 import { Form } from 'react-final-form'
-import { InputField, Button, mustBeEmail } from '../components/Form'
+import { InputField, Button, useMustBeEmail } from '../components/Form'
 import { useLangKey } from '../components/I18nContext'
 
 const Success = styled.div`
@@ -44,6 +44,7 @@ const locales = {
 export function WorkshopForm() {
   const langKey = useLangKey()
   const t = locales[langKey]
+  const mustBeEmail = useMustBeEmail()
 
   return (
     <Form

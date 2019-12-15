@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { Box, up, css, th } from '@xstyled/styled-components'
 import { useField } from 'react-final-form'
 import { validate as validateEmail } from 'email-validator'
+import { useLangKey } from './I18nContext'
 
 const FormField = styled.box`
   display: flex;
@@ -85,6 +86,17 @@ export const Button = styled.button`
   )}
 `
 
+const locales = {
+  en: {
+    required: 'Required',
+    invalidEmail: 'Invalid Email',
+  },
+  fr: {
+    required: 'Requis',
+    invalidEmail: 'Email invalide',
+  },
+}
+
 export function InputField({
   id,
   required,
@@ -96,9 +108,11 @@ export function InputField({
   fieldAs,
   rows,
 }) {
+  const langKey = useLangKey()
+  const t = locales[langKey]
   const field = useField(name, {
     validate: value => {
-      if (required && !value) return 'Required'
+      if (required && !value) return t.required
       if (validateProp) return validateProp(value)
       return undefined
     },
@@ -129,7 +143,11 @@ export function InputField({
   )
 }
 
-export function mustBeEmail(value) {
-  if (!validateEmail(value)) return 'Invalid Email'
-  return undefined
+export function useMustBeEmail() {
+  const langKey = useLangKey()
+  const t = locales[langKey]
+  return value => {
+    if (!validateEmail(value)) return t.invalidEmail
+    return undefined
+  }
 }
