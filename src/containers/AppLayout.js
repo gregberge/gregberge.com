@@ -9,18 +9,10 @@ import {
 } from '../components/Layout'
 import { GlobalStyle } from '../components/GlobalStyle'
 import { ThemeInitializer } from '../components/Theme'
-import { I18nProvider } from '../components/I18nContext'
+import { I18nProvider, toEnglish, toFrench } from '../components/I18nContext'
 import { AppNavbar } from './AppNavbar'
 import { AppFooter } from './AppFooter'
 import { Newsletter } from './Newsletter'
-
-function toEnglish(location) {
-  return location.pathname.replace(/^\/fr\//, '')
-}
-
-function toFrench(location) {
-  return `/fr${location.pathname}`
-}
 
 export function AppLayout({ children, langKey }) {
   return (

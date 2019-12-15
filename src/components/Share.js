@@ -2,16 +2,17 @@ import React from 'react'
 import styled, { keyframes, th } from '@xstyled/styled-components'
 import { FaTwitter, FaFacebook } from 'react-icons/fa'
 import { TwitterShareButton, FacebookShareButton } from 'react-share'
+import { useLangKey } from './I18nContext'
 
 const InnerShare = styled.div`
-  margin: 5 -2;
+  margin: 5 -1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 18;
 
   > div {
-    margin: 0 2;
+    margin: 0 1;
   }
 
   > div[role='button'] {
@@ -19,6 +20,11 @@ const InnerShare = styled.div`
     cursor: pointer;
     transition: base;
     color: lighter;
+    height: 48;
+    width: 48;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       color: accent;
@@ -53,11 +59,22 @@ const Line = styled.div`
   border-bottom-color: light500;
 `
 
+const locales = {
+  en: {
+    share: `Share article`,
+  },
+  fr: {
+    share: `Partager l’article`,
+  },
+}
+
 export function Share({ url, title }) {
+  const langKey = useLangKey()
+  const t = locales[langKey]
   return (
     <InnerShare>
       <Neon>❤</Neon>
-      <span>Share article</span>
+      <span>{t.share}</span>
       <Line />
       <TwitterShareButton url={url} title={title} via="neoziro">
         <FaTwitter />

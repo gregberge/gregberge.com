@@ -5,7 +5,7 @@ import { Form } from 'react-final-form'
 import { FORM_ERROR } from 'final-form'
 import { Container } from '../components/Container'
 import { useLangKey } from '../components/I18nContext'
-import { mustBeEmail, InputField, Button } from '../components/Form'
+import { useMustBeEmail, InputField, Button } from '../components/Form'
 
 export const FormLayout = styled.div`
   display: flex;
@@ -78,6 +78,8 @@ const locales = {
 export function Newsletter() {
   const langKey = useLangKey()
   const t = locales[langKey]
+
+  const mustBeEmail = useMustBeEmail()
 
   function handleSubmit({ FNAME, EMAIL }) {
     const params = new URLSearchParams(

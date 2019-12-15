@@ -23,6 +23,11 @@ exports.onCreateNode = ({ node, actions }) => {
     })
     createNodeField({
       node,
+      name: `slug`,
+      value: node.frontmatter.slug,
+    })
+    createNodeField({
+      node,
       name: `link`,
       value: getPath({ ...node, fields: { langKey } }),
     })
@@ -64,6 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve('./src/templates/post.js'),
       context: {
         id: node.id,
+        slug: node.frontmatter.slug,
         langKey: node.fields.langKey,
       },
     })
