@@ -77,7 +77,10 @@ export function Seo({
               <meta name="twitter:creator" content="@neoziro" />
               <meta name="twitter:title" content={title} />
               <meta name="twitter:description" content={description} />
-              <meta name="twitter:image" content={image} />
+              <meta
+                name="twitter:image"
+                content={`${siteMetadata.canonicalUrl}${image}`}
+              />
             </Helmet>
             <SchemaOrg
               title={title}
