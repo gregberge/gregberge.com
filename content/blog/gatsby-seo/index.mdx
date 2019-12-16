@@ -113,7 +113,7 @@ export default function HomePage() {
       <Helmet>
         <title>My homepage</title>
         <description>Description of your homepage.</description>
-        <script type="application/ld+json">
+        <JsonLd>
           {{
             '@context': 'https://schema.org',
             '@type': 'Organization',
@@ -125,7 +125,7 @@ export default function HomePage() {
               contactType: 'Customer service',
             },
           }}
-        </script>
+        </JsonLd>
       </Helmet>
       <h1>Home of my website</h1>
     </main>
