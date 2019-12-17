@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import styled, { up, css, th, Box } from '@xstyled/styled-components'
+import styled, { up, css, th } from '@xstyled/styled-components'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import Img from 'gatsby-image'
 import { MDXProvider } from '@mdx-js/react'
