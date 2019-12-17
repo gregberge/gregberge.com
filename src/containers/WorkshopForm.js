@@ -14,7 +14,7 @@ const Success = styled.div`
 
 const locales = {
   en: {
-    success: 'Thanks! I&apos;ll call you back as quickly as possible.',
+    success: "Thanks! I'll call you back as quickly as possible.",
     name: 'Name',
     email: 'Email',
     role: 'Role',

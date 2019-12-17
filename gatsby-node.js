@@ -31,6 +31,14 @@ exports.onCreateNode = ({ node, actions }) => {
       name: `link`,
       value: getPath({ ...node, fields: { langKey } }),
     })
+    createNodeField({
+      node,
+      name: `editLink`,
+      value: `https://github.com/gregberge/gregberge.com/edit/master${node.fileAbsolutePath.replace(
+        __dirname,
+        '',
+      )}`,
+    })
   }
 }
 

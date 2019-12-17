@@ -5,14 +5,14 @@ import { TwitterShareButton, FacebookShareButton } from 'react-share'
 import { useLangKey } from './I18nContext'
 
 const InnerShare = styled.div`
-  margin: 5 -1;
+  margin: 5 -3 0 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 18;
 
-  > div {
-    margin: 0 1;
+  > div:first-child {
+    margin-right: 2;
   }
 
   > div[role='button'] {
@@ -21,7 +21,7 @@ const InnerShare = styled.div`
     transition: base;
     color: lighter;
     height: 48;
-    width: 48;
+    padding: 0 3;
     display: flex;
     align-items: center;
     justify-content: center;

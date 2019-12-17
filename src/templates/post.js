@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import styled, { up, css, th } from '@xstyled/styled-components'
+import styled, { up, css, th, Box } from '@xstyled/styled-components'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import Img from 'gatsby-image'
 import { MDXProvider } from '@mdx-js/react'
@@ -233,6 +233,28 @@ const Alternate = styled.div`
   background-color: light800;
 `
 
+const DiscussEdit = styled.box`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: 5 -2;
+
+  font-size: 18;
+
+  > * {
+    padding: 0 2;
+  }
+
+  a {
+    color: lighter;
+    transition: base;
+
+    &:hover {
+      color: accent;
+    }
+  }
+`
+
 const langs = {
   fr: 'Français',
   en: 'English',
@@ -241,10 +263,20 @@ const langs = {
 const locales = {
   en: {
     alternate: `This article is also available in:`,
+    discuss: 'Discuss on Twitter',
+    edit: 'Edit on GitHub',
   },
   fr: {
     alternate: `Cet article est aussi disponible en :`,
+    discuss: 'Discuter sur Twitter',
+    edit: 'Éditer sur GitHub',
   },
+}
+
+function getDiscussUrl(location) {
+  return encodeURI(
+    `https://twitter.com/search?q=https://gregberge.com${location.pathname}`,
+  )
 }
 
 export default function Post({ data }) {
@@ -291,10 +323,17 @@ export default function Post({ data }) {
           </Article>
           <Location>
             {({ location }) => (
-              <Share
-                url={`${data.site.siteMetadata.canonicalUrl}${location.pathname}`}
-                title={frontmatter.title}
-              />
+              <>
+                <DiscussEdit>
+                  <a href={getDiscussUrl(location)}>{t.discuss}</a>
+                  <span>•</span>
+                  <a href={data.mdx.fields.editLink}>{t.edit}</a>
+                </DiscussEdit>
+                <Share
+                  url={`${data.site.siteMetadata.canonicalUrl}${location.pathname}`}
+                  title={frontmatter.title}
+                />
+              </>
             )}
           </Location>
         </PageContainer>
@@ -314,6 +353,9 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       body
       timeToRead
+      fields {
+        editLink
+      }
       frontmatter {
         title
         description
