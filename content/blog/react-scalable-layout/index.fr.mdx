@@ -1,0 +1,357 @@
+---
+slug: 'react-scalable-layout'
+title: 'Créer des layouts scalable avec React'
+date: '2019-12-18'
+author: 'Greg Bergé'
+published: true
+description: 'Découvrez comment créer des layouts riches et scalables avec react-teleporter.'
+categories:
+  - 'javascript'
+  - 'react'
+banner: './images/banner.jpg'
+bannerCredit: 'Photo par [Dane Deaner](https://unsplash.com/@danedeaner?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) sur [Unsplash](https://unsplash.com/s/photos/build?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
+---
+
+De nos jours, de plus en plus d'applications sont développées en HTML5, et très souvent avec l'aide de React. Une application et un site internet sont différents sur de nombreux points, l'un de ces points concerne le layout.
+
+Le layout d'une application est composé de zones fixes, alors qu'un site internet est généralement une suite de blocs qui se succèdent les uns aux autres. Prenons [Slack](http://slack.com/), l'application web est composée d'une barre latérale et d'une barre de titre, qui peuvent varier selon le contexte dans lequel on se trouve.
+
+Je prendrai comme exemple un backoffice de création d'articles, composé d'une liste et d'une page de création.
+
+## Structure de la page
+
+La structure de la page comporte un header composé d'un titre et d'une barre d'outils. Elle comporte également une zone de contenu `<main />`.
+
+```js
+function List() {
+  return (
+    <div>
+      <header>
+        <h1>Articles</h1>
+        <div role="toolbar" aria-orientation="horizontal" aria-label="Toolbar">
+          <Link to="/new">Create article</Link>
+        </div>
+      </header>
+      <main>{/* List of articles */}</main>
+    </div>
+  )
+}
+
+function Create() {
+  return (
+    <div>
+      <header>
+        <h1>New article</h1>
+        <div role="toolbar" aria-orientation="horizontal" aria-label="Toolbar">
+          <Link to="/">Back to article list</Link>
+        </div>
+      </header>
+      <main>{/* Article form */}</main>
+    </div>
+  )
+}
+```
+
+Le layout est dupliqué entre les deux pages. Pour éviter cette duplication, il doit être factorisé dans un composant réutilisable.
+
+## Créer un template
+
+On crée donc un composant `<Layout />`, c'est un template utilisé dans les deux pages :
+
+```js
+function Layout({ title, toolbar, children }) {
+  return (
+    <div>
+      <header>
+        <h1>{title}</h1>
+        <div role="toolbar" aria-orientation="horizontal" aria-label="Toolbar">
+          {toolbar}
+        </div>
+      </header>
+      <main>{/* List of articles */}</main>
+    </div>
+  )
+}
+
+function List() {
+  return (
+    <Layout title="Articles" toolbar={<Link to="/new">Create article</Link>}>
+      {/* List of articles */}
+    </Layout>
+  )
+}
+
+function Create() {
+  return (
+    <Layout
+      title="New article"
+      toolbar={<Link to="/">Back to article list</Link>}
+    >
+      {/* Article form */}
+    </Layout>
+  )
+}
+```
+
+Le problème de factorisation est résolu, mais il s'agit d'un template. L'approche template n'est pas dans la philosophie de React. En effet, un template présente plusieurs limites.
+
+## Limites des templates
+
+### La composition
+
+Le principal défaut des templates c'est l'absence de composition. React est conçu et pensé pour faire de la composition de composants. Hors avec un template on brise cette composition en utilisant des propriétés au lieu d'utiliser des composants.
+
+Les propriétés `title` et `toolbar` ne font pas partie de l'arbre React. La notion d'arbre est au coeur de React, les événements, le contexte, tout est basé sur la relation de composant parent et enfants.
+
+Prenons un exemple simple, je souhaite un champs de recherche dans la barre d'outils sur la page de liste des articles.
+
+Avec une librairie de formulaires telles que [react-final-form](https://github.com/final-form/react-final-form), on doit encapsuler la page dans un composant `<Form />`. Il permet de définir un contexte pour le formulaire.
+
+```js
+function List() {
+  return (
+    <Form>
+      {({ handleSubmit }) => (
+        <form onSubmit={handleSubmit}>
+          <Layout
+            title="Articles"
+            toolbar={
+              <>
+                <Field name="search" />
+                <Link to="/new">Create article</Link>
+              </>
+            }
+          >
+            {/* List of articles */}
+          </Layout>
+        </form>
+      )}
+      }
+    </Form>
+  )
+}
+```
+
+Toute la page est donc encapsulée dans un formulaire, hors il est interdit d'avoir un formulaire à l'intérieur d'un autre formulaire. Si notre layout contient un autre formulaire (dans le footer par exemple), cela posera problème.
+
+### L'isolation des responsabilités
+
+**L'isolation des responsabilités est un principe fondamental dans l'architecture et la scalabilité d'une application.** Dans notre cas, le `<Layout />` est un problème, c'est la page qui en est responsable alors qu'elle ne devrait être responsable que de son contenu, du titre et des boutons de sa barre d'outils.
+
+On peut facilement se rendre compte de cette limitation en ajoutant du [Code Splitting](https://reactjs.org/docs/code-splitting.html) avec [`React.lazy`](https://reactjs.org/docs/code-splitting.html#reactlazy).
+
+```js
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+const List = React.lazy(() => import('./List.js'))
+const Create = React.lazy(() => import('./Create.js'))
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Suspense fallback="Loading...">
+        <Switch>
+          <Route path="/new">
+            <Create />
+          </Route>
+          <Route path="/">
+            <List />
+          </Route>
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
+  )
+}
+```
+
+Le layout étant à l'intérieur de nos pages, il ne persiste pas lors du chargement des pages. C'est une mauvaise UX.
+
+Le layout doit donc être défini en dehors des pages. En revanche, chaque page doit rester responsable de son titre et de sa barre d'outils.
+
+## La solution
+
+Le template n'est donc pas la meilleure solution dans ce cas. Définissons la structure de la page directement dans `App`:
+
+```js
+// App.js
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+const List = React.lazy(() => import('./List.js'))
+const Create = React.lazy(() => import('./Create.js'))
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div>
+        <header>
+          <h1>{/* Title */}</h1>
+          <div
+            role="toolbar"
+            aria-orientation="horizontal"
+            aria-label="Toolbar"
+          >
+            {/* Toolbar */}
+          </div>
+        </header>
+        <main>
+          <React.Suspense fallback="Loading...">
+            <Switch>
+              <Route path="/new">
+                <Create />
+              </Route>
+              <Route path="/">
+                <List />
+              </Route>
+            </Switch>
+          </React.Suspense>
+        </main>
+      </div>
+    </BrowserRouter>
+  )
+}
+```
+
+Toujours dans une idée de séparation des responsabilités, l'idée est de définir le titre et la barre d'outils à l'intérieur de chacune des pages. De cette manière, il sera possible d'ajouter des pages sans impacter la structure de l'application.
+
+J'ai créé une librairie qui répond à ce problème : [react-teleporter](https://github.com/gregberge/react-teleporter).
+
+`react-teleporter` permet de définir des zones dans afin d'y téléporter des composants. Et ce tout en conservant la hiérarchie de l'arbre React, grâce notamment aux [React portals](https://reactjs.org/docs/portals.html).
+
+Un téléporteur exposent deux composants : une "target" et une "source". Les éléments définis dans la "source" sont téléportés dans la "target".
+
+Commençons par définir deux téléporteurs, un pour le titre :
+
+```js
+// teleporters/Title.js
+import React from 'react'
+import { createTeleporter } from 'react-teleporter'
+
+const Title = createTeleporter()
+
+export function TitleTarget() {
+  return <Title.Target as="h1" />
+}
+
+export function TitleSource({ children }) {
+  return <Title.Source>{children}</Title.Source>
+}
+```
+
+Et un pour la barre d'outils :
+
+```js
+// teleporters/Toolbar.js
+import React from 'react'
+import { createTeleporter } from 'react-teleporter'
+
+const Toolbar = createTeleporter()
+
+export function ToolbarTarget() {
+  return (
+    <Toolbar.Target
+      role="toolbar"
+      aria-orientation="horizontal"
+      aria-label="Toolbar"
+    />
+  )
+}
+
+export function ToolbarSource({ children }) {
+  return <Toolbar.Source>{children}</Toolbar.Source>
+}
+```
+
+Ajoutons maintenant les "targets" dans notre `App` :
+
+```js
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { TitleTarget, TitleSource } from './teleporters/Title'
+import { ToolbarTarget } from './teleporters/Toolbar'
+
+const List = React.lazy(() => import('./List.js'))
+const Create = React.lazy(() => import('./Create.js'))
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div>
+        <header>
+          <TitleTarget />
+          <ToolbarTarget />
+        </header>
+        <main>
+          <TitleSource>Default title</TitleSource>
+          <React.Suspense fallback="Loading...">
+            <Switch>
+              <Route path="/new">
+                <Create />
+              </Route>
+              <Route path="/">
+                <List />
+              </Route>
+            </Switch>
+          </React.Suspense>
+        </main>
+      </div>
+    </BrowserRouter>
+  )
+}
+```
+
+Il nous est désormais possible de définir le contenu du titre et de la barre d'outils dans nos pages :
+
+```js
+// List.js
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { TitleSource } from './teleporters/Title'
+import { ToolbarSource } from './teleporters/Toolbar'
+
+export default function List() {
+  return (
+    <>
+      <TitleSource>Articles</TitleSource>
+      <ToolbarSource>
+        <Link to="/new">Create article</Link>
+      </ToolbarSource>
+      <div>My articles lists</div>
+    </>
+  )
+}
+```
+
+```js
+// Create.js
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { TitleSource } from './teleporters/Title'
+import { ToolbarSource } from './teleporters/Toolbar'
+
+export default function Create() {
+  return (
+    <>
+      <TitleSource>New article</TitleSource>
+      <ToolbarSource>
+        <Link to="/">Back to list</Link>
+      </ToolbarSource>
+      <div>My article form</div>
+    </>
+  )
+}
+```
+
+Cette méthode offre donc plusieurs avantages :
+
+- Il est possible d'utiliser le contexte de manière simple et intuitive
+- La page ne gère que ce qui la concerne et n'inclut plus le layout
+
+Voici une démo fonctionnelle sur CodeSandbox :
+
+https://codesandbox.io/s/react-teleporter-demo-ryklv
+
+## Conclusion
+
+Dans une application React, **la composition doit toujours être privilégiée**. Le layout ne fait pas exception. [react-teleporter](https://github.com/gregberge/react-teleporter) offre une solution simple et intuitive pour répondre à ce problème.
