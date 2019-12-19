@@ -39,7 +39,7 @@ export default function AboutPage() {
           </p>
 
           <p>
-            I joined the fouding team of{' '}
+            I joined the founding team of{' '}
             <a href="https://www.doctolib.fr">Doctolib</a> to build the{' '}
             <strong>first medical booking software in Europe</strong>.
           </p>
