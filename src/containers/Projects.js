@@ -333,8 +333,8 @@ function Projects({ data, projects }) {
       label={projects.svgr.label}
       title="SVGR"
       npm="@svgr/core"
-      github="https://github.com/smooth-code/svgr"
-      url="https://www.smooth-code.com/open-source/svgr/"
+      github="https://github.com/gregberge/svgr"
+      url="https://react-svgr.com"
       color="#FF921B"
       description={projects.svgr.description}
       tags={['React', 'AST', 'Babel', 'create-react-app']}
@@ -345,8 +345,8 @@ function Projects({ data, projects }) {
       label={projects['loadable-components'].label}
       title="Loadable Components"
       npm="@loadable/component"
-      github="https://github.com/smooth-code/loadable-components"
-      url="https://www.smooth-code.com/open-source/loadable-components/"
+      github="https://github.com/gregberge/loadable-components"
+      url="https://loadable-components.com"
       color="#fff"
       description={projects['loadable-components'].description}
       tags={['React', 'Code Splitting', 'webpack', 'rollup']}

@@ -18,26 +18,12 @@ export default function ProjectsPage() {
           description: (
             <>
               SVGR transforms SVG into React Components. It is available as{' '}
-              <a href="https://www.smooth-code.com/open-source/svgr/docs/cli/">
-                CLI
-              </a>
-              ,{' '}
-              <a href="https://www.smooth-code.com/open-source/svgr/docs/webpack/">
-                webpack
-              </a>
-              ,{' '}
-              <a href="https://www.smooth-code.com/open-source/svgr/docs/rollup/">
-                webpack
-              </a>
-              ,{' '}
-              <a href="https://www.smooth-code.com/open-source/svgr/docs/node-api/">
-                Node.js
-              </a>{' '}
-              or even{' '}
-              <a href="https://www.smooth-code.com/open-source/svgr/playground/">
-                online
-              </a>
-              . It is included in{' '}
+              <a href="https://react-svgr.com/docs/cli/">CLI</a>,{' '}
+              <a href="https://react-svgr.com/docs/webpack/">webpack</a>,{' '}
+              <a href="https://react-svgr.com/docs/rollup/">webpack</a>,{' '}
+              <a href="https://react-svgr.com/docs/node-api/">Node.js</a> or
+              even <a href="https://react-svgr.com/playground/">online</a>. It
+              is included in{' '}
               <a href="https://create-react-app.dev/docs/adding-images-fonts-and-files/#adding-svgs">
                 create-react-app
               </a>{' '}
