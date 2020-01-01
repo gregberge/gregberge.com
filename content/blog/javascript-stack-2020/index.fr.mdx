@@ -1,0 +1,154 @@
+---
+slug: 'javascript-stack-2020'
+title: 'Stack JavaScript 2020'
+date: '2020-01-01'
+author: 'Greg Bergé'
+published: true
+description: 'Démarrer un projet JavaScript avec Node.js et React en 2020.'
+categories:
+  - 'javascript'
+  - 'react'
+  - 'node.js'
+banner: './images/banner.jpg'
+bannerCredit: 'Photo par [Ian Schneider](https://unsplash.com/@goian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) sur [Unsplash](https://unsplash.com/s/photos/build?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)'
+---
+
+Cela va maintenant faire 10 ans que j’utilise le JavaScript au quotidien aussi bien côté client que côté serveur. Au fil des années j’ai créé de nombreux projets qui m'ont permis d'expérimenter et d'affiner ma stack technique de prédilection. En ce début d'année 2020, j'ai le sentiment que c'est le moment de la partager avec vous !
+
+## Backend
+
+### Base de données
+
+#### PostgreSQL
+
+![PostgreSQL Logo](./images/logos/postgresql.png)
+
+[PostgreSQL](https://www.postgresql.org/) est une base solide, performante et résiliente. C'est une base relationnelle avec ses avantages : une structure et des contraintes. Elle est aussi flexible qu’une base NoSQL avec le type JSONb. A noter que PostgreSQL permet également de faire de la recherche Full Text. Elle vous évitera d'installer un Elastic Search pour des cas simples. C’est pour moi la base de données de référence et je l’utilise dans tous mes projets.
+
+#### Redis
+
+![Redis Logo](./images/logos/redis.png)
+
+[Redis](https://redis.io/) est une base de données clef / valeur très rapide, en effet par défaut elle utilise la RAM et n'écrit pas sur le disque. Je m'en sers pour stocker les données volatiles : les sessions, le cache. Redis permet également de faire du pub / sub et du lock, ce qui s'avère utile sur des projets distribués.
+
+### Manipulation des données
+
+#### Knex.js
+
+![Knex.js Logo](./images/logos/knex.png)
+
+[Knex.js](http://knexjs.org/) est un SQL builder, il permet d’écrire des requêtes avec une syntaxe objet. Cela peut paraître superflu mais il est assez utile de pouvoir composer ses requètes selon des paramètres, dans les API notamment. Knex.js fonctionne parfaitement avec Postgres, même les champs spéciaux comme le JSONb sont supportés. Les transactions sont aussi supportées nativement. Son système de migrations et de seed est un allié précieux et permet un travail en équipe simplifié.
+
+#### Objection.js
+
+![Objection.js Logo](./images/logos/objection.png)
+
+[Objection.js](https://vincit.github.io/objection.js/) est un ORM, il fonctionne avec [Knex.js](http://knexjs.org/) mais y ajoute une couche modèle. Les modèles sont validés via JSON Schema, ce qui permet une description très précise des données attendus. Objection.js permet de matérialiser les relations entre vos modèles et d'ajouter une couche métier au plus proche de votre base de données. C'est un ORM sûr et fiable grâce notamment au fait qu'il soit basé sur Knex.js.
+
+### Serveur web
+
+#### Express
+
+![Express Logo](./images/logos/express.png)
+
+[Express](https://expressjs.com/) est le micro-framework web de référence pour Node.js. Il permet de structurer son serveur HTTP de manière intuitive. J'utilise Express pour organiser mon application HTTP, la compartimenter, gérer CORS, les redirections, etc... C'est un peu le chef d'orchestre de mon application côté serveur. A noté que je privilégie un serveur Express plutôt que des micro-services, cela permet de démarrer un projet plus rapidement et simplement.
+
+### Authentification
+
+#### passport
+
+![Passport Logo](./images/logos/passport.png)
+
+[Passport](http://www.passportjs.org/) est un middleware express permettant de gérer l'authentification. Sa particularité c'est de supporter de nombreux services : GitHub, Google, Facebook. Il supporte également l'authentification local, via cookie, un classique. C'est un allié précieux pour gagner du temps notamment si on doit supporter plusieurs services tierces.
+
+### Configuration
+
+#### node-convict
+
+![Mozilla Logo](./images/logos/mozilla.png)
+
+Créé par Mozilla, [node-convict](https://github.com/mozilla/node-convict) permet de définir une configuration structurée. Cela permet de voir clairement ce qui fait partie de votre configuration. Les valeurs peuvent être lus depuis un fichier et surchargé via des variables d'environnement. C'est une petite librairie, mais ça permet d'avoir une configuration propre et claire.
+
+### API
+
+#### GraphQL
+
+![GraphQL Logo](./images/logos/graphql.png)
+
+[GraphQL](https://graphql.org/) est une langage qui permet d’exprimer des API sous forme de graph. L’avantage de GraphQL c’est sa simplicité et son evolutivité. A l’instar de REST ou les endpoints se multiplient, GraphQL permet de consolider un schéma. Lorsque vous faite une optimisation, elle profite à toute l'application. Au niveau documentation, l'introspection permet de savoir exactement ce qui est disponible. J'expose en général mon schéma grâce à [Apollo Server](https://www.apollographql.com/docs/apollo-server/). GraphQL est vraiment au coeur de ma stack, c'est lui qui assure la communication entre le client et le serveur.
+
+## Front-end
+
+### Frameworks
+
+#### Next.js
+
+![Next.js Logo](./images/logos/next.png)
+
+[Next.js](https://nextjs.org/) est un framework React qui permet de créer des applications SSR ou statiques. J'utilise Next.js pour gagner du temps. Il masque une grosse complexité lié au SSR, cela permet d'être concentré sur le développement sans être distrait. Next.js optimise votre application de manière incroyable, notamment avec l'optimisation statique automatique. Next.js est une couche relativement fine, assez facile de migrer sur une autre chose plus tard.
+
+#### Gatsby
+
+![Gatsby Logo](./images/logos/gatsby.png)
+
+[Gatsby](https://www.gatsbyjs.com/) est un framework React qui permet de créer des applications statiques. Gatsby est plus limité que Next, je l'utilise uniquement pour sites complètement statique comme ce blog ou un site vitrine. Si votre site est dynamique, je vous conseille plutôt Next. Gatsby est assez rigide, très performant pour le statique, mais difficile à scaler sur autre chose, vous l'aurez compris, mon préféré c'est Next.js !
+
+### UI / UX
+
+#### xstyled
+
+![xstyled Logo](./images/logos/xstyled.png)
+
+[xstyled](https://xstyled.dev/) est une librairie qui permet de styliser une application de manière consistente. En tant que créateur de xstyled, je vais essayer d'être objectif. Après Prettier, c'est l'outil qui me fait gagner le plus du temps. Je l'utilise avec [styled-components](https://www.styled-components.com/) et c'est un bonheur. Les grilles de xstyled et ses utilitaires responsive permettent de créer des interfaces léchés en un temps record ! Sans parler du dark mode qui peut être ajouté en seulement quelques minutes... !
+
+#### Reakit
+
+![Reakit Logo](./images/logos/reakit.png)
+
+[Reakit](https://reakit.io/) est une librairie UI pour React. La particularité de Reakit, c'est que les composants ne sont pas stylisés. Reakit est en quelque sorte le squelette de vos composants, il vous assure d'avoir une application totalement accessible. Il gère tout le bas niveau complexe pour des composants tels que les tabs ou les dialogs.
+
+#### Smooth UI
+
+![Smooth UI Logo](./images/logos/smooth-ui.png)
+
+[Smooth UI](https://smooth-ui.smooth-code.com/) est une librairie UI pour React. Elle réunie à la fois [xstyled](https://xstyled.dev/) et [Reakit](https://reakit.io/) pour donner des composants prêt à l'usage. Elle me fait gagner un temps précieux sur les projets ou le design n'est pas imposé. C'est un peu mon Bootstrap à moi !
+
+## Outils
+
+### Visual Studio Code
+
+![Visual Studio Code Logo](./images/logos/vscode.png)
+
+[VSCode](https://code.visualstudio.com/) est un éditeur de code, optimisé pour le JavaScript. VSCode est bien sûr incontournable ! Son support de TypeScript permet d'obtenir de l'auto-complétion même dans un projet JavaScript, c'est agréable. Il supporte toutes les fonctionnalités que l'on attend d'un éditeur : multi-curseurs, raccourcis, plugins... C'est l'éditeur de référence pour coder en JavaScript.
+
+### Prettier
+
+![Prettier Logo](./images/logos/prettier.png)
+
+[Prettier](https://prettier.io/) est un formatteur de code JavaScript. Alors comment vivre sans Prettier ? Avec lui, vous ne vous souciez plus de la manière d'écrire votre code. Il me fait gagner chaque jour un temps précieux, c'est vraiment une révolution pour moi et je ne m'en sépare jamais !
+
+### ESLint
+
+![ESLint Logo](./images/logos/eslint.png)
+
+[ESLint](https://eslint.org/) est un linter de code JavaScript. C'est la première chose que j'installe sur un nouveau projet. Un bon linter vous fera gagner un temps précieux ! Il permet de détecter les erreurs les plus communes et de garantir une qualité de code. J'utilise la configuration [eslint-config-smooth](https://github.com/smooth-code/eslint-config-smooth).
+
+## Hébergement
+
+### Netlify
+
+![Netlify Logo](./images/logos/netlify.png)
+
+[Netlify](http://netlify.com/) est un hébergeur de sites statiques. Je l'utilise pour sa simplicité et ses performances. Il permet de lier un domaine facilement et les services tels que les "forms" sont appréciables pour un site vitrine.
+
+### Heroku
+
+![Heroku Logo](./images/logos/heroku.png)
+
+[Heroku](https://www.heroku.com/) est un hébergeur moderne pour Node.js et Ruby qui abstrait la partie devops. C'est vers Heroku que je m'oriente quand mon projet a besoin d'une base de données. Là encore, la simplicité et l'abstraction qu'il propose sont des atouts certains lors du lancement d'un projet. C'est un bonheur de pouvoir ajouter PostgresSQL en un clic et d'avoir un déploiement automatique à chaque commit !
+
+## Conclusion
+
+Tous ces outils me permettent d'être performant et de créer des projets très rapidement ! Au fil du temps j'ai pu tester énormément de solutions et celles-ci sont celles qui correspondent le mieux à mes attentes.
+
+Je vous souhaite une excellente année 2020 ! 🎆🎊

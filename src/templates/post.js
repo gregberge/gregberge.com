@@ -143,6 +143,7 @@ const Article = styled.article`
   h4 {
     font-size: 20;
     font-weight: 500;
+    color: lighter;
     margin: 4 0 2;
   }
 
