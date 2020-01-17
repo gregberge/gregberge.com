@@ -133,7 +133,7 @@ function Clients({ clientLogos }) {
 
 function Reviews({ avatars }) {
   return (
-    <Box row m={-3} my={4}>
+    <Box row m={-3} my={4} justifyContent="center">
       {reviews.map((review, index) => {
         const edge = avatars.edges.find(edge =>
           edge.node.relativePath.includes(review.slug),
