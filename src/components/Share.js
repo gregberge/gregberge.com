@@ -1,39 +1,35 @@
 import React from 'react'
-import styled, { keyframes, th } from '@xstyled/styled-components'
+import styled, { Box, keyframes, th } from '@xstyled/styled-components'
 import { FaTwitter, FaFacebook } from 'react-icons/fa'
 import { TwitterShareButton, FacebookShareButton } from 'react-share'
 import { useLangKey } from './I18nContext'
 
 const InnerShare = styled.div`
-  margin: 5 -3 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   font-size: 18;
 
-  > div:first-child {
-    margin-right: 2;
-  }
-
-  > div[role='button'] {
+  button {
     line-height: 0;
     cursor: pointer;
     transition: base;
-    color: lighter;
-    height: 48;
-    padding: 0 3;
+    color: lighter !important;
+    height: 24;
+    width: 24;
     display: flex;
     align-items: center;
     justify-content: center;
 
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
     &:hover {
-      color: accent;
+      color: accent !important;
     }
   }
 
   > span {
     line-height: 2.5;
-    margin: 0 2;
   }
 `
 
@@ -73,15 +69,27 @@ export function Share({ url, title }) {
   const t = locales[langKey]
   return (
     <InnerShare>
-      <Neon>❤</Neon>
-      <span>{t.share}</span>
-      <Line />
-      <TwitterShareButton url={url} title={title} via="neoziro">
-        <FaTwitter />
-      </TwitterShareButton>
-      <FacebookShareButton url={url} quote={title}>
-        <FaFacebook />
-      </FacebookShareButton>
+      <Box row mx={-2} alignItems="center">
+        <Box col="auto" px={2}>
+          <Neon>❤</Neon>
+        </Box>
+        <Box col="auto" px={2}>
+          {t.share}
+        </Box>
+        <Box col px={2}>
+          <Line />
+        </Box>
+        <Box col="auto" px={2}>
+          <TwitterShareButton url={url} title={title} via="neoziro">
+            <FaTwitter />
+          </TwitterShareButton>
+        </Box>
+        <Box col="auto" px={2}>
+          <FacebookShareButton url={url} quote={title}>
+            <FaFacebook />
+          </FacebookShareButton>
+        </Box>
+      </Box>
     </InnerShare>
   )
 }
