@@ -13,6 +13,16 @@ export default function ProjectsPage() {
         </>
       }
       projects={{
+        jamtemplates: {
+          label: 'Free themes for Gatsby',
+          description: (
+            <>
+              JamTemplates is a showcase of{' '}
+              <strong>high quality free Gatsby themes</strong>. Anyone can add a
+              theme via a simple pull-request on GitHub.
+            </>
+          ),
+        },
         svgr: {
           label: 'Integrated in create-react-app',
           description: (

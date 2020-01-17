@@ -339,7 +339,6 @@ function Projects({ data, projects }) {
       description={projects.svgr.description}
       tags={['React', 'AST', 'Babel', 'create-react-app']}
     />,
-
     <ProjectTemplate
       logo={logos['loadable-components']}
       label={projects['loadable-components'].label}
@@ -372,6 +371,17 @@ function Projects({ data, projects }) {
       color="#E00348"
       description={projects['smooth-ui'].description}
       tags={['React', 'UI Library']}
+    />,
+    <ProjectTemplate
+      logo={logos.jamtemplates}
+      label={projects.jamtemplates.label}
+      title="JamTemplates"
+      github="https://github.com/gregberge/jamtemplates.com"
+      url="https://jamtemplates.com"
+      color="#8aa5ff"
+      description={projects.jamtemplates.description}
+      tags={['Gatsby', 'themes', 'templates']}
+      stats={false}
     />,
     <ProjectTemplate
       logo={logos['bundle-analyzer']}
