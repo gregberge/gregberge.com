@@ -113,8 +113,8 @@ function Clients({ clientLogos }) {
 
   return (
     <Box row m={-2} justifyContent="space-around">
-      {clients.map(client => {
-        const logo = clientLogos.edges.find(edge =>
+      {clients.map((client) => {
+        const logo = clientLogos.edges.find((edge) =>
           edge.node.relativePath.includes(client.slug),
         )
         return (
@@ -135,7 +135,7 @@ function Reviews({ avatars }) {
   return (
     <Box row m={-3} my={4} justifyContent="center">
       {reviews.map((review, index) => {
-        const edge = avatars.edges.find(edge =>
+        const edge = avatars.edges.find((edge) =>
           edge.node.relativePath.includes(review.slug),
         )
         return (

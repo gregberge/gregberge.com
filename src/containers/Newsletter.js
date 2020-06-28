@@ -88,8 +88,8 @@ export function Newsletter() {
     params.append('FNAME', FNAME)
     params.append('EMAIL', EMAIL)
     const url = `https://gregberge.us4.list-manage.com/subscribe/post-json?${params.toString()}`
-    return new Promise(resolve => {
-      jsonp(url, { param: 'c' }, error => {
+    return new Promise((resolve) => {
+      jsonp(url, { param: 'c' }, (error) => {
         if (error) {
           resolve({ [FORM_ERROR]: error.message })
           return

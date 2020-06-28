@@ -12,7 +12,7 @@ import {
 export function LatestArticles({ edges }) {
   return (
     <Box row my={-2}>
-      {edges.map(edge => (
+      {edges.map((edge) => (
         <Box key={edge.node.id} col={1} py={2}>
           <CardLink as={Link} to={edge.node.fields.link}>
             <Card>

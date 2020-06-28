@@ -130,7 +130,7 @@ function MobileMenu({ children, ...props }) {
   React.useEffect(() => {
     setShow(true)
   }, [])
-  const handleClick = event => {
+  const handleClick = (event) => {
     if (event.target.tagName === 'A') {
       props.hide()
     }
@@ -145,10 +145,10 @@ function MobileMenu({ children, ...props }) {
       data-animating={props.unstable_animating}
       {...props}
     >
-      {dialogProps => (
+      {(dialogProps) => (
         <MobileMenuContainer
           {...dialogProps}
-          onTransitionEnd={event => {
+          onTransitionEnd={(event) => {
             if (
               event.target &&
               event.target.dataset &&
@@ -174,7 +174,9 @@ function MobileMenuDisclosure(props) {
 export function Navbar({ children }) {
   const dialog = useDialogState({ unstable_animated: true, visible: false })
   const childrenArray = React.Children.toArray(children)
-  const secondary = childrenArray.find(child => child.type === NavbarSecondary)
+  const secondary = childrenArray.find(
+    (child) => child.type === NavbarSecondary,
+  )
   return (
     <Nav>
       <MobileMenu {...dialog}>{secondary.props.children}</MobileMenu>

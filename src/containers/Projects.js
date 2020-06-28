@@ -96,7 +96,7 @@ const Project = styled.div`
   align-items: center;
   transition: base;
 
-  ${p => {
+  ${(p) => {
     switch (p.position) {
       case 'right':
         return css`
@@ -253,10 +253,10 @@ function ProjectTemplate({
     Promise.all([
       fetch(
         github.replace('https://github.com', 'https://api.github.com/repos'),
-      ).then(res => res.json()),
+      ).then((res) => res.json()),
       fetch(
         `https://api.npmjs.org/downloads/point/last-week/${npm}`,
-      ).then(res => res.json()),
+      ).then((res) => res.json()),
     ])
       .then(setData)
       .catch(() => {

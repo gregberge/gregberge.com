@@ -33,7 +33,7 @@ const InnerShare = styled.div`
   }
 `
 
-const neon = p => {
+const neon = (p) => {
   const red = th.color('danger')(p)
 
   return keyframes`

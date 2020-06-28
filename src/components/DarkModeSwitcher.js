@@ -153,7 +153,7 @@ export function DarkModeSwitcher() {
       type="button"
       aria-label="Color mode"
       className={`switcher ${mode} ${ready ? 'ready' : ''}`}
-      onClick={() => setMode(mode => (mode === 'light' ? 'dark' : 'light'))}
+      onClick={() => setMode((mode) => (mode === 'light' ? 'dark' : 'light'))}
     >
       <div className="star star1" />
       <div className="star star2" />
