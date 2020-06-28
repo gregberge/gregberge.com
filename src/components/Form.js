@@ -111,7 +111,7 @@ export function InputField({
   const langKey = useLangKey()
   const t = locales[langKey]
   const field = useField(name, {
-    validate: value => {
+    validate: (value) => {
       if (required && !value) return t.required
       if (validateProp) return validateProp(value)
       return undefined
@@ -146,7 +146,7 @@ export function InputField({
 export function useMustBeEmail() {
   const langKey = useLangKey()
   const t = locales[langKey]
-  return value => {
+  return (value) => {
     if (!validateEmail(value)) return t.invalidEmail
     return undefined
   }

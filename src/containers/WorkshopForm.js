@@ -48,7 +48,7 @@ export function WorkshopForm() {
 
   return (
     <Form
-      onSubmit={values => {
+      onSubmit={(values) => {
         const body = new URLSearchParams()
         body.append('form-name', 'workshop')
         Object.entries(values).forEach(([name, value]) => {
@@ -59,7 +59,7 @@ export function WorkshopForm() {
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body,
         })
-          .catch(error => ({ [FORM_ERROR]: error.message }))
+          .catch((error) => ({ [FORM_ERROR]: error.message }))
           .then(() => {})
       }}
     >

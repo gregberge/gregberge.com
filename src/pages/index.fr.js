@@ -7,9 +7,9 @@ import { LatestArticles } from '../containers/LatestArticles'
 import { Seo } from '../containers/Seo'
 
 export default function IndexPage({ data }) {
-  const edges = data.en.edges.map(enEdge => {
+  const edges = data.en.edges.map((enEdge) => {
     const frEdge = data.fr.edges.find(
-      frEdge => frEdge.node.frontmatter.slug === enEdge.node.frontmatter.slug,
+      (frEdge) => frEdge.node.frontmatter.slug === enEdge.node.frontmatter.slug,
     )
     return frEdge || enEdge
   })
