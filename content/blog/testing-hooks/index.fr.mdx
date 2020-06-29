@@ -1,0 +1,402 @@
+---
+slug: 'testing-hooks'
+title: 'Écrire de meilleurs tests avec les "Testing Hooks"'
+date: '2020-06-28'
+author: 'Greg Bergé'
+published: true
+description: 'Découvrez comment simplier et réutiliser la logique dans vos tests avec le pattern "Testing Hooks".'
+categories:
+  - 'javascript'
+  - 'testing'
+  - 'jest'
+banner: './images/banner.jpg'
+bannerCredit: 'Photo by [Dil](https://unsplash.com/@thevisualiza?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](/s/photos/light?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)'
+---
+
+Les tests sont au coeur de tout projet, ils permettent d'assurer à la fois les non regressions et la stabilité du code. En revanche ils sont souvent pénibles à écrire et sont souvent les moins bien lotis en ce qui concerne la factorisation et la beauté du code. Cet article expose une solution pour rendre vos tests plus clairs. C'est [Jest](https://jestjs.io/) qui est utilisé dans les exemples, mais la technique peut s'adapter à toutes les librairies.
+
+## Écriture des tests
+
+La plupart des frameworks modernes (Jest, Jasmine) proposent deux syntaxes pour écrire les tests :
+la syntaxe TDD pour "Test Driven Development" et la syntaxe BDD pour "Behaviour Driven Development".
+
+### Syntaxe TDD
+
+La syntaxe TDD consiste à exprimer les tests de façon linéaire. On exprime ce qui doit se passer et on écrit le test correspondant :
+
+```js
+test('returns user when the user exists', () => {
+  // ...
+})
+
+test('returns null when the user is not found', () => {
+  // ...
+})
+```
+
+### Syntaxe BDD
+
+La syntaxe BDD quant à elle, consiste à exprimer les tests sous la forme d'un scénario avec des actions imbriquées les unes dans les autres.
+
+```js
+describe('#getUser', () => {
+  describe('when the user exists', () => {
+    beforeEach(() => {
+      // ...
+    })
+
+    it('returns user', () => {
+      // ...
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', () => {
+      // ...
+    })
+  })
+})
+```
+
+### Choisir entre BDD et TDD
+
+La syntaxe BDD permet d'organiser son test de manière plus précise. On décrit le comportement de l'utilisateur et tous les cas qui se présentent.
+
+La syntaxe TDD est plus légère, elle convient très bien pour des cas simples, mais sur des cas complexes on peut vite se retrouver à répéter du code et à oublier des cas.
+
+Personnellement je préfère la syntaxe BDD. Cependant j'ai récemment lu [un article de Kent C. Dodds](https://kentcdodds.com/blog/avoid-nesting-when-youre-testing) où il recommande d'utiliser la syntaxe TDD pour des raisons de clarté et d'organisation de code.
+
+Je suis d'accord avec cet article, j'ai moi-même fait face à ces problèmes d'organisation. Mais j'ai réussi à organiser le code tout en conservant les avantages de la syntaxe BDD. Je vais vous expliquer comment.
+
+## Problèmes rencontrés
+
+Pour bien comprendre les difficultés engendrés par la syntaxe BDD faut partir d'un cas concret. Dans mon exemple, je vais tester une fonction `getRandomUser` qui récupère un utilisateur aléatoire en base de données. L'objet `database` représentera une base de données avec des fonctions classiques pour interagir avec elle.
+
+Voici donc le test de ma fonction écrit en syntaxe BDD :
+
+```js
+import database from './database'
+import { getRandomUser } from './api'
+
+describe('#getRandomUser', () => {
+  let db
+
+  beforeEach(async () => {
+    db = await database.connect()
+  })
+
+  afterEach(async () => {
+    await db.reset()
+    await db.close()
+  })
+
+  describe('when the user exists', () => {
+    let user
+
+    beforeEach(async () => {
+      user = await db.users.insert({ name: 'Greg' })
+    })
+
+    it('returns user', async () => {
+      const userFromAPI = await getRandomUser()
+      expect(user).toEqual(userFromAPI)
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', async () => {
+      const userFromAPI = await getRandomUser()
+      expect(userFromAPI).toBe(null)
+    })
+  })
+})
+```
+
+Plusieurs choses rendent ce code est complexe :
+
+- Des variables sont définies avec `let` au lieu de `const`
+- Le scope des variables est invisible; autrement dit on ne sait pas très bien ce qui appartient au test ou au contexte
+
+## Comment simplifier le code ?
+
+Résoudre le problème de `let` est à première vue impossible, car il faut que la variable soit accessible dans le scope de la fonction `describe` mais qu'elle soit initialisée dans le `beforeEach`.
+
+Quant au souci de savoir la provenance, on pourrait passer par une convention en utilisant des noms comme `userFromAPI` mais cela reste assez complexe.
+
+Prenons donc un peu de recul et réfléchissons : comment faire pour avoir un scope unique ?
+
+En JavaScript, il y a deux moyens d'assigner une valeur : soit on déclare une variable, soit on assigne une propriété à un objet.
+
+La déclaration de variable contribue à la complexité, alors partons sur l'assignation de propriété à un objet.
+
+Je définis un objet `ctx` qui contiendra toutes les variables qui font partie du contexte de mon test. Cet objet `ctx` sera réinitialisé à chaque test pour garantir l'isolation des tests :
+
+```js
+import database from './database'
+import { getUser } from './api'
+
+// Create a global ctx object
+let ctx
+
+// Reinitialize it for each test
+beforeEach(() => {
+  ctx = {}
+})
+
+describe('#getUser', () => {
+  // Add value in ctx
+  beforeEach(async () => {
+    ctx.db = await database.connect()
+  })
+
+  afterEach(async () => {
+    await ctx.db.reset()
+    await ctx.db.close()
+  })
+
+  describe('when the user exists', () => {
+    beforeEach(async () => {
+      ctx.user = await ctx.db.users.insert({ name: 'Greg' })
+    })
+
+    it('returns user', async () => {
+      const user = await getUser()
+      expect(ctx.user).toEqual(user)
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', async () => {
+      const user = await getUser()
+      expect(user).toBe(null)
+    })
+  })
+})
+```
+
+C'est déjà plus clair ! On identifie en un coup d'oeil ce qui fait partie de notre contexte et ce qui n'en fait pas partie : `ctx.user` vs `user`. De plus on a plus qu'un seul `let`, celui qui permet de définir `ctx`.
+
+## Réutiliser la logique
+
+Maintenant qu'on a trouvé un moyen de ne plus avoir des variables dans tous les sens, il faut penser au côté factorisation.
+
+En tant que développeur React depuis maintenant plus de 5 ans, les Hooks ont été pour moi un véritable renouveau et une excellente source d'inspiration pour factoriser mon code. Alors je me suis dit, pourquoi ne pas faire pareil dans les tests ? Les "Testing Hooks" étaient nés !
+
+Prenons d'abord le temps de définir ce qu'est un "Testing Hook". Un "Testing Hook" est une fonction qui prend en entrée un ou plusieurs paramètres, retourne un ou plusieurs paramètres et utilise des Hooks natifs tels que: `beforeEach` et `afterEach`.
+
+Pour bien les identifier, il est bon d'imposer une convention. React impose que tous les Hooks soient préfixés par "use", pour bien faire la distinction dans les tests, on utilisera donc "with".
+
+Un "Testing Hook" est donc une fonction qui commence par "with" avec une entrée, une sortie et des appels possibles à `beforeEach`, `afterEach` ou d'autres Hooks.
+
+Alors je vous propose d'écrire notre premier "Testing Hook" ! Celui qui nous permettra d'accéder au contexte : pierre angulaire de notre système de Hooks.
+
+```js
+function withContext() {
+  const ctx = {}
+
+  beforeEach(() => {
+    for (const member in ctx) {
+      delete ctx[member]
+    }
+  })
+
+  return ctx
+}
+```
+
+Il s'agit bien d'une fonction qui commence par "with", qui fait appel à `beforeEach` et qui retourne une valeur, on est dans les clous !
+
+Vous noterez que `ctx` est une constante et que l'on va supprimer ses propriétés dans un `beforeEach`. En effet on récupère le contexte une seule fois mais on doit s'assurer qu'il est vidé à chaque nouvelle exécution.
+
+On peut désormais l'utiliser dans notre test :
+
+```js
+import { withContext } from './hooks/context'
+import database from './database'
+import { getUser } from './api'
+
+const ctx = withContext()
+
+describe('#getUser', () => {
+  // Add value in ctx
+  beforeEach(async () => {
+    ctx.db = await database.connect()
+  })
+
+  afterEach(async () => {
+    await ctx.db.reset()
+    await ctx.db.close()
+  })
+
+  describe('when the user exists', () => {
+    beforeEach(async () => {
+      ctx.user = await ctx.db.users.insert({ name: 'Greg' })
+    })
+
+    it('returns user', async () => {
+      const user = await getUser()
+      expect(ctx.user).toEqual(user)
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', async () => {
+      const user = await getUser()
+      expect(user).toBe(null)
+    })
+  })
+})
+```
+
+## Créer un Testing Hook
+
+Le Hook `withContext` la pierre angulaire de notre système, le contexte va servir de transport à tous les autres "Testing Hooks".
+
+La connexion à la base de données va devoir être réutilisée dans de nombreux tests. On va donc définir un Hook qui permet de s'y connecter et de nettoyer la connexion :
+
+```js
+export function withDatabase(ctx) {
+  beforeEach(async () => {
+    ctx.db = ctx.db || (await database.connect())
+  })
+
+  afterEach(async () => {
+    await ctx.db.reset()
+    await ctx.db.close()
+  })
+}
+```
+
+Encore une fois on a bien une fonction qui commence par `with` qui prend en argument le contexte, il s'agit donc bien d'un Hook. Vous noterez qu'il ne retourne aucune valeur. C'est le contexte qui nous sert de bus, un peu comme les [`ref` en React](https://reactjs.org/).
+
+Grâce à ce Hook, on peut encore alléger le test :
+
+```js
+import { withContext } from './hooks/context'
+import { withDatabase } from './hooks/database'
+import database from './database'
+import { getUser } from './api'
+
+const ctx = withContext()
+
+describe('#getUser', () => {
+  describe('when the user exists', () => {
+    withDatabase(ctx)
+
+    beforeEach(async () => {
+      ctx.user = await ctx.db.users.insert({ name: 'Greg' })
+    })
+
+    it('returns user', async () => {
+      const user = await getUser()
+      expect(ctx.user).toEqual(user)
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', async () => {
+      const user = await getUser()
+      expect(user).toBe(null)
+    })
+  })
+})
+```
+
+## Composer les Hooks
+
+Il nous reste une chose à factoriser, la création de l'utilisateur. On va se servir de ce cas pour illustrer la composition des Hooks :
+
+```js
+export function withUser(ctx, data) {
+  withDatabase(ctx)
+
+  beforeEach(async () => {
+    ctx.user = await ctx.db.users.insert(data)
+  })
+}
+```
+
+Vous noterez que `withDatabase` est appelé à l'intérieur de `withUser`, cela nous permet de composer les Hooks.
+
+Voici à présent le résultat final factorisé à l'aide des "Testing Hooks" :
+
+```js
+import { withContext } from './hooks/context'
+import { withUser } from './hooks/database'
+import database from './database'
+import { getUser } from './api'
+
+const ctx = withContext()
+
+describe('#getUser', () => {
+  describe('when the user exists', () => {
+    withUser(ctx, { name: 'Greg' })
+
+    it('returns user', async () => {
+      const user = await getUser()
+      expect(ctx.user).toEqual(user)
+    })
+  })
+
+  describe('when the user does not exist', () => {
+    it('returns null', async () => {
+      const user = await getUser()
+      expect(user).toBe(null)
+    })
+  })
+})
+```
+
+Comme l'illustre l'exemple ci-dessus, le test est maintenant très concis et surtout on peut réutiliser la logique dans d'autres tests.
+
+Personnellement j'utilise quelque chose de beaucoup plus générique. Un Hook `withContextValues` qui permet de définir simplement des valeurs asynchrones dans le contexte.
+
+```js
+function withContextValues(getValues) {
+  beforeEach(async () => {
+    const values = await getValues()
+    Object.assign(ctx, values)
+  })
+}
+
+// Usage
+withContextValues(async () => ({
+  user: await createUser({ name: 'Greg' }),
+}))
+```
+
+## Retour d'expérience
+
+J'utilise le principe des "Testing Hooks" au quotidien depuis maintenant 6 mois, avec ce recul j'ai pu déterminer quels en sont les points faibles et les points forts.
+
+### Les points forts
+
+#### Clarté du code
+
+Le code est nettement plus clair, le fait de spécifier systèmatiquement `ctx` permet de savoir en un coup d'oeil ce qui est du contexte et ce qui n'en est pas.
+
+#### Partage de la logique
+
+Ce système permet de factoriser facilement toute la logique de création de mocks nécessaire aux tests et également tous les services que vous utilisez au quotidien (database, GraphQL, etc..).
+
+### Les limites
+
+Je préfère parler de limite plutôt que de points faibles car ces limites pourraient être probablement levées par la création d'une librairie plus complexe.
+
+#### Code non explicit
+
+L'ajout de propriétés dans le contexte est opaque, il est invisible à la lecture du code. Cela est à la fois une force et une faiblesse. Le code s'en trouve allégé mais quelqu'un qui n'a jamais lu le code peut se retrouver perdu.
+
+```js
+const ctx = withContext()
+// ctx.db is magically added by `withDatabase`
+withDatabase()
+```
+
+#### Pas universel
+
+En écrivant cet article, je me suis aperçu que l'ordre d'exécution des `beforeEach` peut varier d'une librairie à l'autre. Sur [CodeSandbox](https://codesandbox.io) ils sont évalués dans l'ordre inverse, or ce système requiert une exécution linéaire pour fonctionner.
+
+## Et après ?
+
+Je n'ai volontairement pas voulu créer une librairie car le code est assez simple, il s'agit là plutôt d'un principe. Je partage cet article car je pense que cela pourrait facilement être poussé plus loin et devenir un standard dans l'écriture des tests. Et si ça peut faire en sorte que la syntaxe "BDD" ne finisse pas aux oubliettes pour de mauvaises raisons, alors c'est toujours ça de pris !
