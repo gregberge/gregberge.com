@@ -13,6 +13,16 @@ export default function ProjectsPage() {
         </>
       }
       projects={{
+        'smooth-doc': {
+          label: 'Premium Gatsby Theme',
+          description: (
+            <>
+              Smooth DOC is a <strong>premium Gatsby theme</strong>. Create{' '}
+              <strong>rich and beautiful documentation</strong> websites with
+              almost zero-configuration.
+            </>
+          ),
+        },
         jamtemplates: {
           label: 'Free themes for Gatsby',
           description: (

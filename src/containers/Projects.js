@@ -251,9 +251,14 @@ function ProjectTemplate({
   React.useEffect(() => {
     if (!stats) return
     Promise.all([
-      fetch(
-        github.replace('https://github.com', 'https://api.github.com/repos'),
-      ).then((res) => res.json()),
+      github
+        ? fetch(
+            github.replace(
+              'https://github.com',
+              'https://api.github.com/repos',
+            ),
+          ).then((res) => res.json())
+        : 0,
       fetch(
         `https://api.npmjs.org/downloads/point/last-week/${npm}`,
       ).then((res) => res.json()),
@@ -264,7 +269,7 @@ function ProjectTemplate({
       })
   }, [stats, npm, github])
 
-  const stars = stats && (
+  const stars = stats && github && (
     <ShineTag key="stars" title={t.stars}>
       ★{' '}
       {data
@@ -282,13 +287,13 @@ function ProjectTemplate({
     </ShineTag>
   )
 
-  const ghTag = (
+  const ghTag = github ? (
     <ProjectTag key="github">
       <a href={github}>
         <FaGithub />
       </a>
     </ProjectTag>
-  )
+  ) : null
 
   return (
     <Project position={position}>
@@ -328,6 +333,16 @@ function Projects({ data, projects }) {
     return obj
   }, {})
   const projectElements = [
+    <ProjectTemplate
+      logo={logos['smooth-doc']}
+      label={projects['smooth-doc'].label}
+      title="Smooth DOC"
+      npm="smooth-doc"
+      url="https://smooth-doc.com"
+      color="#667EEA"
+      description={projects['smooth-doc'].description}
+      tags={['Gatsby', 'docs', 'theme', 'templates']}
+    />,
     <ProjectTemplate
       logo={logos.svgr}
       label={projects.svgr.label}
