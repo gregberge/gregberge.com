@@ -57,7 +57,12 @@ module.exports = {
         path: `${__dirname}/content/blog`,
       },
     },
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: 'gatsby-plugin-styled-components',
+      options: {
+        topLevelImportPaths: ['@xstyled/styled-components'],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-google-fonts`,
