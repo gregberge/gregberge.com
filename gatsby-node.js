@@ -1,3 +1,4 @@
+/* eslint-env node */
 const DEFAULT_LANG_KEY = 'en'
 
 function getLangKey(node) {
@@ -84,12 +85,12 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-exports.sourceNodes = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type MdxFrontmatter {
-      banner: File
-    }
-  `
-  createTypes(typeDefs)
-}
+// exports.sourceNodes = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type MdxFrontmatter {
+//       banner: File
+//     }
+//   `
+//   createTypes(typeDefs)
+// }

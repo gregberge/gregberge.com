@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { Box, up, css, th } from '@xstyled/styled-components'
+import styled, { x, up, css, th } from '@xstyled/styled-components'
 import { useField } from 'react-final-form'
 import { validate as validateEmail } from 'email-validator'
 import { useLangKey } from './I18nContext'
@@ -122,13 +122,8 @@ export function InputField({
   return (
     <FormField>
       <FormFieldLabel htmlFor={idOrName}>
-        {label}{' '}
-        {required && !errored && (
-          <Box forwardedAs="span" color="danger">
-            *
-          </Box>
-        )}
-        {errored && <Box color="danger">{field.meta.error}</Box>}
+        {label} {required && !errored && <x.span color="danger">*</x.span>}
+        {errored && <x.div color="danger">{field.meta.error}</x.div>}
       </FormFieldLabel>
       <Input
         as={fieldAs}

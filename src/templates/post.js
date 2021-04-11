@@ -12,7 +12,7 @@ import { Code } from '../components/Code'
 import { Share } from '../components/Share'
 import { Seo } from '../containers/Seo'
 
-export function formatReadingTime(minutes) {
+function formatReadingTime(minutes) {
   const cups = Math.round(minutes / 5)
   if (cups > 5) {
     return `${new Array(Math.round(cups / Math.E))
@@ -23,7 +23,7 @@ export function formatReadingTime(minutes) {
 }
 
 // `lang` is optional and will default to the current user agent locale
-export function formatPostDate(date, lang) {
+function formatPostDate(date, lang) {
   if (typeof Date.prototype.toLocaleDateString !== 'function') {
     return date
   }
