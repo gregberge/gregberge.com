@@ -4,12 +4,15 @@ import {
   rpxTransformers,
   th,
   ColorModeProvider,
+  defaultTheme,
 } from '@xstyled/styled-components'
 import { transparentize } from 'polished'
 
 const theme = {
+  ...defaultTheme,
   initialColorModeName: 'dark',
   defaultColorModeName: 'dark',
+  space: [0, 4, 8, 16, 24, 48, 96, 144, 192, 240],
   fonts: {
     serif: 'Georgia, serif',
     'sans-serif':
@@ -50,9 +53,9 @@ const theme = {
     light800: '#282E5E',
     light900: '#22264A',
     light950: '#1f2347',
-    'navbar-bg': (p) => transparentize(0.1, th.color('light900')(p)),
-    shadow: (p) => transparentize(0.75, th.color('accent')(p)),
-    'shadow-dark': (p) => transparentize(0.75, th.color('darker')(p)),
+    'navbar-bg': transparentize(0.1, '#22264A'),
+    shadow: transparentize(0.75, '#FFCC68'),
+    'shadow-dark': transparentize(0.75, '#000'),
     darker: th.color('black'),
     accent: '#FFCC68',
 
@@ -70,6 +73,9 @@ const theme = {
         light100: '#363B65',
         darker: th.color('white'),
         accent: '#b54909',
+        'navbar-bg': transparentize(0.1, '#EFEFF5'),
+        shadow: transparentize(0.75, '#b54909'),
+        'shadow-dark': transparentize(0.75, '#fff'),
       },
       'monochrome-light': {
         lighter: th.color('black'),

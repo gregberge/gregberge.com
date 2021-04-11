@@ -191,12 +191,7 @@ export default function Workshops() {
           application web <strong>React</strong> en utilisant les{' '}
           <strong>Hooks</strong>.
         </SectionDescription>
-        <Card
-          forwardedAs="section"
-          my={5}
-          overflow="hidden"
-          position="relative"
-        >
+        <Card as="section" my={5} overflow="hidden" position="relative">
           <Logo />
           <CardHeader pr="40%">
             <WorkshopTitle>React Hooks</WorkshopTitle>
@@ -230,7 +225,7 @@ export default function Workshops() {
             </div>
           </CardBody>
         </Card>
-        <Card forwardedAs="section" my={5}>
+        <Card as="section" my={5}>
           <CardBody>
             <CardTitle>Qu’allez-vous apprendre ?</CardTitle>
             <Box row justifyContent="space-around">
@@ -253,7 +248,7 @@ export default function Workshops() {
             </Box>
           </CardBody>
         </Card>
-        <Card forwardedAs="section" my={5}>
+        <Card as="section" my={5}>
           <CardBody>
             <CardTitle>À qui s’adresse cette formation ?</CardTitle>
             <Box row mx={-3} textAlign="justify" fontSize={15}>
@@ -303,7 +298,7 @@ export default function Workshops() {
             <Clients clientLogos={data.clientLogos} />
           </CardFooter>
         </Card>
-        <Card forwardedAs="section" my={5}>
+        <Card as="section" my={5}>
           <CardBody>
             <CardTitle>Réservez une formation pour votre société</CardTitle>
             <WorkshopForm />

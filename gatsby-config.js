@@ -1,3 +1,4 @@
+/* eslint-env node */
 const defaultSiteUrl = 'https://gregberge.com'
 
 const {
@@ -12,6 +13,9 @@ const isNetlifyProduction = NETLIFY_ENV === 'production'
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
+  flags: {
+    DEV_SSR: false,
+  },
   siteMetadata: {
     siteUrl,
     canonicalUrl: siteUrl,
@@ -79,29 +83,30 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        start_url: `/`,
-        name: `Greg Bergé`,
-        short_name: `gregberge`,
+        start_url: '/',
+        name: 'Greg Bergé',
+        short_name: 'gregberge',
         description:
           'The personal website of Greg Bergé. Learn and level-up about React & JavaScript.',
-        background_color: `#1f2347`,
-        theme_color: `#FFCC68`,
-        display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
-        localize: [
-          {
-            start_url: `/fr/`,
-            lang: `fr`,
-            name: `Greg Bergé`,
-            short_name: `gregberge`,
-            description: `Le site personnel de Greg Bergé. Apprenez et devenez meilleur en React et JavaScript.`,
-          },
-        ],
+        background_color: '#1f2347',
+        theme_color: '#FFCC68',
+        display: 'standalone',
+        icon: 'src/images/icon.png', // This path is relative to the root of the site.
+        // localize: [
+        //   {
+        //     start_url: '/fr/',
+        //     lang: 'fr',
+        //     name: 'Greg Bergé',
+        //     short_name: 'gregberge',
+        //     description:
+        //       'Le site personnel de Greg Bergé. Apprenez et devenez meilleur en React et JavaScript.',
+        //   },
+        // ],
       },
     },
     {

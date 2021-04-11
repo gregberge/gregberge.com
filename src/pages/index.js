@@ -22,8 +22,8 @@ export default function IndexPage({ data }) {
           React.
         </HeroTeaser>
       </Hero>
-      <Container forwardedAs="section" pb={5}>
-        <SectionTitle forwardedAs="h2">Blog</SectionTitle>
+      <Container as="section" pb={5}>
+        <SectionTitle as="h2">Blog</SectionTitle>
         <LatestArticles edges={data.allMdx.edges} />
       </Container>
     </>
