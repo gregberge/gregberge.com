@@ -1,9 +1,7 @@
-import { createGlobalStyle, th } from '@xstyled/styled-components'
-import { normalize } from 'polished'
+import React from 'react'
+import { createGlobalStyle, th, Preflight } from '@xstyled/styled-components'
 
-export const GlobalStyle = createGlobalStyle`
-  ${normalize()}
-
+const CustomStyle = createGlobalStyle`
   html, body { 
     margin: 0;
     font-family: sans-serif;
@@ -17,14 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     background-color: bg;
   }
 
-
   ::selection {
     background-color: light500; 
     color: lighter;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   *:focus {
@@ -44,3 +37,12 @@ export const GlobalStyle = createGlobalStyle`
     appearance: none;
   }
 `
+
+export function GlobalStyle() {
+  return (
+    <>
+      <Preflight />
+      <CustomStyle />
+    </>
+  )
+}
