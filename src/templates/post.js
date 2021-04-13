@@ -147,6 +147,12 @@ const Article = styled.article`
     margin: 4 0 2;
   }
 
+  hr {
+    border: 0;
+    border-top: 1;
+    border-top-color: light500;
+  }
+
   li,
   p {
     margin: 3 0;
