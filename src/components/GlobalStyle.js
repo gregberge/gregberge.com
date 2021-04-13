@@ -1,7 +1,9 @@
-import React from 'react'
-import { createGlobalStyle, th, Preflight } from '@xstyled/styled-components'
+import { normalize } from 'polished'
+import { createGlobalStyle, th } from '@xstyled/styled-components'
 
-const CustomStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
+  ${normalize()}
+
   html, body { 
     margin: 0;
     font-family: sans-serif;
@@ -37,12 +39,3 @@ const CustomStyle = createGlobalStyle`
     appearance: none;
   }
 `
-
-export function GlobalStyle() {
-  return (
-    <>
-      <Preflight />
-      <CustomStyle />
-    </>
-  )
-}
