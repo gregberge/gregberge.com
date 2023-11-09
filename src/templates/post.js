@@ -282,7 +282,7 @@ const locales = {
 
 function getDiscussUrl(location) {
   return encodeURI(
-    `https://twitter.com/search?q=https://gregberge.com${location.pathname}`,
+    `https://x.com/search?q=https://gregberge.com${location.pathname}`,
   )
 }
 

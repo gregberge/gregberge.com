@@ -78,7 +78,7 @@ export default function AboutPage() {
           <p>
             N’hésitez par à me contacter par{' '}
             <a href="mailto:hey@gregberge.com">email</a> ou via{' '}
-            <a href="https://twitter.com/neoziro">Twitter</a>. C’est toujours un
+            <a href="https://twitter.com/gregberge_">X</a>. C’est toujours un
             plaisir d’échanger !
           </p>
         </AboutText>

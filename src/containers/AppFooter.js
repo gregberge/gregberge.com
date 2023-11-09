@@ -79,7 +79,7 @@ export function AppFooter() {
             </>
           )}
         </Location>
-        <SocialLink title={t.twitter} href="https://twitter.com/neoziro">
+        <SocialLink title={t.twitter} href="https://twitter.com/gregberge_">
           <FaTwitter />
         </SocialLink>
         <SocialLink title={t.github} href="https://github.com/gregberge">
